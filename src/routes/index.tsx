@@ -45,7 +45,7 @@ export function AuthLayout({
           </h2>
           <p className="mt-4 max-w-sm text-sm text-muted-foreground">
             El sistema evalúa automáticamente la asistencia de cada alumno y marca su aptitud
-            cuando supera el 80% requerido.
+            cuando supera el 70% requerido.
           </p>
         </div>
         <p className="text-xs text-muted-foreground">Entorno de demostración con datos simulados.</p>

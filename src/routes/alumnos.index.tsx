@@ -2,7 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Search } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Badge, Card, Shell } from "@/components/Shell";
-import { ALUMNOS, LISTA_CURSOS, esApto } from "@/lib/mock-data";
+import { LISTA_CURSOS, esApto } from "@/lib/mock-data";
+import { useAlumnos } from "../hooks/useAlumnos";
 
 export const Route = createFileRoute("/alumnos/")({
   head: () => ({
@@ -20,24 +21,37 @@ export const Route = createFileRoute("/alumnos/")({
 });
 
 function Alumnos() {
+  const { alumnos, loading } = useAlumnos();
   const [q, setQ] = useState("");
   const [curso, setCurso] = useState("todos");
   const [estado, setEstado] = useState("todos");
 
   const filtrados = useMemo(
     () =>
-      ALUMNOS.filter((a) => {
+      alumnos.filter((a) => {
         const coincide = `${a.nombre} ${a.dni}`.toLowerCase().includes(q.toLowerCase());
         const cursoOk = curso === "todos" || a.curso === curso;
         const estadoOk =
           estado === "todos" || (estado === "aptos" ? esApto(a) : !esApto(a));
         return coincide && cursoOk && estadoOk;
       }),
-    [q, curso, estado],
+    [alumnos, q, curso, estado],
   );
 
   const select =
     "rounded-lg border border-border bg-card px-3 py-2.5 text-sm font-semibold text-foreground outline-none focus:border-primary";
+
+  if (loading) {
+    return (
+      <Shell title="Alumnos" subtitle="Cargando listado completo desde Firebase...">
+        <div className="flex h-64 items-center justify-center">
+          <p className="text-sm font-semibold text-muted-foreground">
+            Cargando 3,998 registros desde Firestore...
+          </p>
+        </div>
+      </Shell>
+    );
+  }
 
   return (
     <Shell title="Alumnos" subtitle="Consulta de solo lectura. Usa los filtros para segmentar tu aula.">
@@ -97,7 +111,7 @@ function Alumnos() {
                     <div className="h-1.5 w-24 rounded-full bg-surface">
                       <div
                         className={`h-1.5 rounded-full ${esApto(a) ? "bg-success" : "bg-primary"}`}
-                        style={{ width: `${a.asistencia}%` }}
+                        style={{ width: `${Math.min(a.asistencia, 100)}%` }}
                       />
                     </div>
                     <span className="text-sm font-semibold text-foreground">{a.asistencia}%</span>

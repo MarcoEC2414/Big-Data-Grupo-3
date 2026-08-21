@@ -12,7 +12,8 @@ import {
   YAxis,
 } from "recharts";
 import { Badge, Card, Shell } from "@/components/Shell";
-import { ALUMNOS, esApto, porCurso, resumen } from "@/lib/mock-data";
+import { esApto, porCurso, calcularResumen } from "@/lib/mock-data";
+import { useAlumnos } from "../hooks/useAlumnos";
 
 export const Route = createFileRoute("/reportes")({
   head: () => ({
@@ -27,13 +28,28 @@ export const Route = createFileRoute("/reportes")({
 });
 
 function Reportes() {
-  const r = resumen();
-  const cursos = porCurso().map((c) => ({ ...c, corto: c.curso.split(" ")[0] }));
+  const { alumnos, loading } = useAlumnos();
+
+  if (loading) {
+    return (
+      <Shell title="Reportes" subtitle="Cargando reportes en tiempo real...">
+        <div className="flex h-64 items-center justify-center">
+          <p className="text-sm font-semibold text-muted-foreground">
+            Cargando registros desde Firebase Firestore...
+          </p>
+        </div>
+      </Shell>
+    );
+  }
+
+  const r = calcularResumen(alumnos);
+  const cursos = porCurso(alumnos).map((c) => ({ ...c, corto: c.curso.split(" ")[0] }));
   const pie = [
     { name: "Aptos", value: r.aptos, color: "#45c1ad" },
     { name: "No aptos", value: r.noAptos, color: "#fa345e" },
   ];
-  const enRiesgo = ALUMNOS.filter((a) => !esApto(a)).sort((a, b) => a.asistencia - b.asistencia);
+  const enRiesgo = alumnos.filter((a) => !esApto(a)).sort((a, b) => a.asistencia - b.asistencia);
+
 
   return (
     <Shell title="Reportes" subtitle="Resumen general del periodo y alumnos en riesgo académico.">

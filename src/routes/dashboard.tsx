@@ -2,7 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Users, CheckCircle2, AlertTriangle, GaugeCircle } from "lucide-react";
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 import { Badge, Card, Shell } from "@/components/Shell";
-import { ALUMNOS, esApto, resumen } from "@/lib/mock-data";
+import { esApto, calcularResumen } from "@/lib/mock-data";
+import { useAlumnos } from "../hooks/useAlumnos";
 
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
@@ -38,20 +39,34 @@ function Kpi({ icon: Icon, label, value, hint }: { icon: any; label: string; val
 }
 
 function Dashboard() {
-  const r = resumen();
+  const { alumnos, loading } = useAlumnos();
+
+  if (loading) {
+    return (
+      <Shell title="Dashboard" subtitle="Cargando datos en tiempo real...">
+        <div className="flex h-64 items-center justify-center">
+          <p className="text-sm font-semibold text-muted-foreground">
+            Cargando registros desde Firebase Firestore...
+          </p>
+        </div>
+      </Shell>
+    );
+  }
+
+  const r = calcularResumen(alumnos);
   const data = [
     { name: "Aptos", value: r.aptos, color: "#45c1ad" },
     { name: "No aptos", value: r.noAptos, color: "#fa345e" },
   ];
-  const recientes = [...ALUMNOS].sort((a, b) => a.asistencia - b.asistencia).slice(0, 8);
+  const recientes = [...alumnos].sort((a, b) => a.asistencia - b.asistencia).slice(0, 8);
 
   return (
     <Shell title="Dashboard" subtitle="Estado académico general de tus alumnos en el periodo 2026-I.">
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <Kpi icon={Users} label="Total alumnos" value={String(r.total)} hint="Matriculados en tus secciones" />
-        <Kpi icon={CheckCircle2} label="Aptos" value={`${r.pctAptos}%`} hint={`${r.aptos} alumnos con 80% o más de asistencia`} />
-        <Kpi icon={AlertTriangle} label="No aptos" value={String(r.noAptos)} hint="Requieren recuperar asistencia" />
-        <Kpi icon={GaugeCircle} label="Promedio general" value={String(r.promedioGeneral)} hint="Escala vigesimal (0 - 20)" />
+        <Kpi icon={CheckCircle2} label="Aptos" value={`${r.pctAptos}%`} hint={`${r.aptos} alumnos aptos`} />
+        <Kpi icon={AlertTriangle} label="No aptos" value={String(r.noAptos)} hint="Requieren recuperar asistencia o nota" />
+        <Kpi icon={GaugeCircle} label="Promedio general" value={String(r.promedioGeneral)} hint="Escala del periodo" />
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">

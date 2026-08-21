@@ -1,4 +1,4 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import {
   Bar,
@@ -12,47 +12,66 @@ import {
   YAxis,
 } from "recharts";
 import { Badge, Card, Shell } from "@/components/Shell";
-import { ALUMNOS, esApto } from "@/lib/mock-data";
+import { esApto } from "@/lib/mock-data";
+import { useAlumnos } from "../hooks/useAlumnos";
 
 export const Route = createFileRoute("/alumnos/$id")({
-  loader: ({ params }) => {
-    const alumno = ALUMNOS.find((a) => a.id === params.id);
-    if (!alumno) throw notFound();
-    return { alumno };
-  },
-  head: ({ loaderData }) => {
-    const nombre = loaderData?.alumno.nombre ?? "Alumno";
-    return {
-      meta: [
-        { title: `${nombre} — SENATI Gestión Docente` },
-        {
-          name: "description",
-          content: `Ficha académica de ${nombre}: notas por curso, historial de asistencia y aptitud para examen.`,
-        },
-        { property: "og:title", content: `${nombre} — SENATI Gestión Docente` },
-        { property: "og:description", content: "Detalle académico de solo lectura." },
-        ...(loaderData ? [] : [{ name: "robots", content: "noindex" }]),
-      ],
-    };
-  },
+  head: () => ({
+    meta: [
+      { title: "Detalle de Alumno — SENATI Gestión Docente" },
+      {
+        name: "description",
+        content: "Ficha académica del alumno: notas por curso, historial de asistencia y aptitud para examen.",
+      },
+      { property: "og:title", content: "Detalle de Alumno — SENATI Gestión Docente" },
+      { property: "og:description", content: "Detalle académico de solo lectura." },
+    ],
+  }),
   component: Detalle,
 });
 
 function Detalle() {
-  const { alumno } = Route.useLoaderData();
+  const { id } = Route.useParams();
+  const { alumnos, loading } = useAlumnos();
+
+  if (loading) {
+    return (
+      <Shell title="Cargando..." subtitle="Obteniendo información del alumno">
+        <div className="flex h-64 items-center justify-center">
+          <p className="text-sm font-semibold text-muted-foreground">
+            Cargando expediente desde Firestore...
+          </p>
+        </div>
+      </Shell>
+    );
+  }
+
+  const alumno = alumnos.find((a) => String(a.id) === String(id));
+
+  if (!alumno) {
+    return (
+      <Shell title="Alumno no encontrado" subtitle="El ID consultado no existe en la base de datos.">
+        <Link to="/alumnos" className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline">
+          <ArrowLeft className="h-4 w-4" /> Volver a alumnos
+        </Link>
+      </Shell>
+    );
+  }
+
   const apto = esApto(alumno);
 
-  const porCursoNotas = [...new Set(alumno.notas.map((n) => n.curso))].map((curso) => {
-    const notas = alumno.notas.filter((n) => n.curso === curso);
+  const porCursoNotas = [...new Set((alumno.notas || []).map((n) => n.curso))].map((curso) => {
+    const notas = (alumno.notas || []).filter((n) => n.curso === curso);
     return {
       curso: curso.length > 18 ? `${curso.slice(0, 18)}…` : curso,
-      promedio: Number((notas.reduce((s, n) => s + n.nota, 0) / notas.length).toFixed(1)),
+      promedio: Number((notas.reduce((s, n) => s + n.nota, 0) / (notas.length || 1)).toFixed(1)),
     };
   });
 
   const evolucion = ["Unidad I", "Unidad II", "Unidad III", "Unidad IV"].map((u) => {
-    const notas = alumno.notas.filter((n) => n.unidad === u);
-    return { unidad: u.replace("Unidad ", "U"), nota: Number((notas.reduce((s, n) => s + n.nota, 0) / notas.length).toFixed(1)) };
+    const notas = (alumno.notas || []).filter((n) => n.unidad === u);
+    const prom = notas.length ? notas.reduce((s, n) => s + n.nota, 0) / notas.length : 0;
+    return { unidad: u.replace("Unidad ", "U"), nota: Number(prom.toFixed(1)) };
   });
 
   return (
@@ -75,7 +94,7 @@ function Detalle() {
           <div className="mt-2">
             <Badge apto={apto} />
           </div>
-          <p className="mt-2 text-xs text-muted-foreground">Regla: se requiere 80% de asistencia mínima.</p>
+          <p className="mt-2 text-xs text-muted-foreground">Regla: se requiere 70% de asistencia mínima.</p>
         </Card>
       </div>
 
@@ -99,7 +118,7 @@ function Detalle() {
           <h2 className="text-sm font-bold text-foreground">Asistencia por semana (%)</h2>
           <div className="mt-4 h-64">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={alumno.historialAsistencia}>
+              <BarChart data={alumno.historialAsistencia || []}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#eef1f5" />
                 <XAxis dataKey="semana" tick={{ fontSize: 11, fill: "#425b76" }} />
                 <YAxis domain={[0, 100]} tick={{ fontSize: 11, fill: "#425b76" }} />
@@ -136,7 +155,7 @@ function Detalle() {
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
-              {alumno.notas.map((n, i) => (
+              {(alumno.notas || []).map((n, i) => (
                 <tr key={i}>
                   <td className="py-2.5 text-sm text-muted-foreground">{n.curso}</td>
                   <td className="py-2.5 text-sm text-muted-foreground">{n.unidad}</td>

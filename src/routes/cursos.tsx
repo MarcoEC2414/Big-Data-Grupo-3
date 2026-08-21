@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Card, Shell } from "@/components/Shell";
 import { porCurso } from "@/lib/mock-data";
+import { useAlumnos } from "../hooks/useAlumnos";
 
 export const Route = createFileRoute("/cursos")({
   head: () => ({
@@ -15,7 +16,22 @@ export const Route = createFileRoute("/cursos")({
 });
 
 function Cursos() {
-  const cursos = porCurso();
+  const { alumnos, loading } = useAlumnos();
+
+  if (loading) {
+    return (
+      <Shell title="Cursos" subtitle="Cargando datos en tiempo real...">
+        <div className="flex h-64 items-center justify-center">
+          <p className="text-sm font-semibold text-muted-foreground">
+            Cargando registros desde Firebase Firestore...
+          </p>
+        </div>
+      </Shell>
+    );
+  }
+
+  const cursos = porCurso(alumnos);
+
   return (
     <Shell title="Cursos" subtitle="Comparativa de rendimiento entre los cursos que dictas.">
       <div className="grid gap-4 md:grid-cols-2">
