@@ -1,4 +1,4 @@
-# SENATI Gestión Docente
+# SENATI Gestión Docentes
 
 CRM académico interno para **docentes**: visualiza alumnos, notas, asistencia y determina automáticamente quién está **apto para rendir examen** (regla: asistencia ≥ 80%).
 
