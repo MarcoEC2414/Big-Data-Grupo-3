@@ -1,6 +1,17 @@
-// Servidor Node.js de datos mock (sin base de datos real, solo lectura).
+// Servidor Node.js de datos mock (sin base de datos real, solo lectura/memoria).
 // Ejecutar con: npm run mock:server  ->  http://localhost:4000/api/alumnos
 import { createServer } from "node:http";
+
+// --- BASE DE DATOS FICTICIA PARA AUTENTICACIÓN ---
+const USUARIOS = [
+  {
+    id: "usr-1",
+    nombre: "Usuario Demo",
+    email: "admin@senati.pe",
+    password: "123", // En un entorno real debe ir encriptada
+    rol: "Administrador",
+  },
+];
 
 const CURSOS = [
   "Diseño y Desarrollo de Software",
@@ -60,27 +71,136 @@ const ALUMNOS = NOMBRES.map((nombre, i) => {
   };
 });
 
+// Helper para responder en JSON y habilitar CORS
 const json = (res, status, data) => {
   res.writeHead(status, {
     "Content-Type": "application/json; charset=utf-8",
     "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization",
   });
   res.end(JSON.stringify(data, null, 2));
 };
 
+// Helper para parsear el cuerpo JSON de peticiones POST
+const getRequestBody = (req) => {
+  return new Promise((resolve, reject) => {
+    let body = "";
+    req.on("data", (chunk) => {
+      body += chunk.toString();
+    });
+    req.on("end", () => {
+      try {
+        resolve(body ? JSON.parse(body) : {});
+      } catch (err) {
+        reject(err);
+      }
+    });
+    req.on("error", (err) => reject(err));
+  });
+};
+
 const PORT = process.env.PORT || 4000;
 
-createServer((req, res) => {
+createServer(async (req, res) => {
   const url = new URL(req.url, `http://localhost:${PORT}`);
 
-  if (url.pathname === "/api/alumnos") return json(res, 200, ALUMNOS);
+  // Manejar Pre-flight CORS (Navegador)
+  if (req.method === "OPTIONS") {
+    res.writeHead(204, {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type, Authorization",
+    });
+    return res.end();
+  }
 
-  if (url.pathname.startsWith("/api/alumnos/")) {
+  // --- RUTAS DE AUTENTICACIÓN ---
+
+  // POST /api/login -> Iniciar sesión
+  if (req.method === "POST" && url.pathname === "/api/login") {
+    try {
+      const { email, password } = await getRequestBody(req);
+
+      if (!email || !password) {
+        return json(res, 400, { error: "Correo y contraseña son obligatorios." });
+      }
+
+      const usuario = USUARIOS.find(
+        (u) => u.email.toLowerCase() === email.toLowerCase() && u.password === password
+      );
+
+      if (!usuario) {
+        return json(res, 401, { error: "Credenciales incorrectas." });
+      }
+
+      const { password: _, ...userData } = usuario;
+      return json(res, 200, {
+        message: "Inicio de sesión exitoso",
+        token: `mock-jwt-token-${usuario.id}-${Date.now()}`,
+        user: userData,
+      });
+    } catch {
+      return json(res, 400, { error: "Formato JSON inválido." });
+    }
+  }
+
+  // POST /api/register -> Registrar nuevo usuario
+  if (req.method === "POST" && url.pathname === "/api/register") {
+    try {
+      const { nombre, email, password } = await getRequestBody(req);
+
+      if (!nombre || !email || !password) {
+        return json(res, 400, { error: "Todos los campos (nombre, email, password) son obligatorios." });
+      }
+
+      const existe = USUARIOS.some((u) => u.email.toLowerCase() === email.toLowerCase());
+      if (existe) {
+        return json(res, 400, { error: "El correo electrónico ya se encuentra registrado." });
+      }
+
+      const nuevoUsuario = {
+        id: `usr-${USUARIOS.length + 1}`,
+        nombre,
+        email,
+        password,
+        rol: "Estudiante",
+      };
+
+      USUARIOS.push(nuevoUsuario);
+
+      const { password: _, ...userData } = nuevoUsuario;
+      return json(res, 201, {
+        message: "Registro exitoso.",
+        token: `mock-jwt-token-${nuevoUsuario.id}-${Date.now()}`,
+        user: userData,
+      });
+    } catch {
+      return json(res, 400, { error: "Formato JSON inválido." });
+    }
+  }
+
+  // GET /api/me -> Verificar sesión actual
+  if (req.method === "GET" && url.pathname === "/api/me") {
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return json(res, 401, { error: "No autorizado. Token no proporcionado." });
+    }
+    return json(res, 200, { message: "Token válido", user: USUARIOS[0] });
+  }
+
+  // --- RUTAS DE ALUMNOS Y RESUMEN ---
+
+  if (req.method === "GET" && url.pathname === "/api/alumnos") {
+    return json(res, 200, ALUMNOS);
+  }
+
+  if (req.method === "GET" && url.pathname.startsWith("/api/alumnos/")) {
     const alumno = ALUMNOS.find((a) => a.id === url.pathname.split("/").pop());
     return alumno ? json(res, 200, alumno) : json(res, 404, { error: "Alumno no encontrado" });
   }
 
-  if (url.pathname === "/api/resumen") {
+  if (req.method === "GET" && url.pathname === "/api/resumen") {
     const aptos = ALUMNOS.filter((a) => a.apto).length;
     return json(res, 200, {
       total: ALUMNOS.length,
@@ -93,4 +213,4 @@ createServer((req, res) => {
   }
 
   json(res, 404, { error: "Ruta no encontrada" });
-}).listen(PORT, () => console.log(`Mock API en http://localhost:${PORT}/api/alumnos`));
+}).listen(PORT, () => console.log(`Mock API corriendo en http://localhost:${PORT}/api/alumnos`));
