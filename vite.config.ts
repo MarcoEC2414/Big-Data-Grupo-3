@@ -5,9 +5,8 @@ export default defineConfig({
     server: { entry: "server" },
   },
   vite: {
-    base: "/Big-Data-Grupo-3/",
     nitro: {
-      preset: "github-pages",
+      preset: "vercel",
     },
   },
 });
