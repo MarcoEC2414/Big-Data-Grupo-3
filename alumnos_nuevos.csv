@@ -1,0 +1,101 @@
+ID,Sexo,Ciudad,Asistencia,Nota_Final,Situación_Laboral,Nivel_Educativo_Prev,Conectividad_Hogar,Rango_Etario,Estado_Académico
+L-2026-1001,F,La Matanza,36.4,"6,26",Empleado en relación de dependencia,Secundario incompleto,Si,45 a 54,Aprobado
+L-2026-1002,M,Quilmes,30.8,"7,26",Monotributista / independiente,Secundario completo,Si,45 a 54,Aprobado
+L-2026-1003,M,La Plata,31.6,"6,80",Empleado en relación de dependencia,Secundario completo,Si,45 a 54,Aprobado
+L-2026-1004,M,Lomas de Zamora,39.0,"3,55",Empleado en relación de dependencia,Secundario completo,Si,18 a 24,Desaprobado
+L-2026-1005,F,Merlo,36.1,"5,61",Empleado en relación de dependencia,Secundario completo,Si,18 a 24,Desaprobado
+L-2026-1006,F,La Plata,30.1,"8,98",Ama de casa / tareas de cuidado,Primario incompleto,Si,45 a 54,Destacado
+L-2026-1007,F,Mar del Plata,31.0,"8,38",Empleado en relación de dependencia,Secundario completo,No,25 a 34,Aprobado
+L-2026-1008,M,General San Martín,36.6,"7,58",Monotributista / independiente,Primario completo,No,25 a 34,Aprobado
+L-2026-1009,M,La Plata,30.1,"3,17",Ama de casa / tareas de cuidado,Secundario completo,Si,35 a 44,Desaprobado
+L-2026-1010,M,La Matanza,31.6,"7,68",Empleo informal,Universitario incompleto,Si,35 a 44,Aprobado
+L-2026-1011,F,La Plata,35.5,"7,98",Empleado en relación de dependencia,Terciario en curso,No,45 a 54,Aprobado
+L-2026-1012,M,La Matanza,36.9,"6,23",Desempleado,Universitario incompleto,No,25 a 34,Aprobado
+L-2026-1013,M,Merlo,36.5,"6,14",Empleo informal,Secundario incompleto,Si,25 a 34,Aprobado
+L-2026-1014,F,Almirante Brown,32.2,"9,16",Empleado en relación de dependencia,Secundario incompleto,No,45 a 54,Destacado
+L-2026-1015,F,Quilmes,37.1,"9,03",Desempleado,Secundario completo,No,25 a 34,Destacado
+L-2026-1016,F,Avellaneda,32.4,"2,57",Desempleado,Universitario completo,Si,45 a 54,Desaprobado
+L-2026-1017,F,Almirante Brown,33.3,"7,55",Empleado en relación de dependencia,Primario completo,Si,18 a 24,Aprobado
+L-2026-1018,F,La Matanza,37.5,"6,21",Monotributista / independiente,Universitario completo,Si,35 a 44,Aprobado
+L-2026-1019,F,Merlo,36.5,"6,18",Desempleado,Secundario completo,Si,45 a 54,Aprobado
+L-2026-1020,F,Lomas de Zamora,38.5,"7,77",Empleo informal,Terciario en curso,Si,18 a 24,Aprobado
+L-2026-1021,M,Almirante Brown,36.6,"6,21",Empleado en relación de dependencia,Universitario completo,No,55 y más,Aprobado
+L-2026-1022,F,Merlo,35.7,"3,49",Empleado en relación de dependencia,Secundario completo,Si,35 a 44,Desaprobado
+L-2026-1023,F,La Plata,30.9,"5,24",Monotributista / independiente,Secundario completo,Si,55 y más,Desaprobado
+L-2026-1024,F,La Matanza,33.7,"8,47",Ama de casa / tareas de cuidado,Terciario en curso,Si,35 a 44,Aprobado
+L-2026-1025,F,La Plata,32.7,"9,06",Empleo informal,Secundario incompleto,Si,25 a 34,Destacado
+L-2026-1026,M,Mar del Plata,32.4,"5,10",Monotributista / independiente,Primario completo,No,35 a 44,Desaprobado
+L-2026-1027,F,Almirante Brown,39.7,"7,06",Ama de casa / tareas de cuidado,Secundario completo,Si,45 a 54,Aprobado
+L-2026-1028,F,Avellaneda,33.9,"2,44",Empleo informal,Primario completo,Si,35 a 44,Desaprobado
+L-2026-1029,M,La Matanza,38.9,"6,03",Empleado en relación de dependencia,Secundario completo,Si,25 a 34,Aprobado
+L-2026-1030,F,Lomas de Zamora,36.3,"6,14",Empleado en relación de dependencia,Secundario completo,Si,18 a 24,Aprobado
+L-2026-1031,M,Mar del Plata,37.9,"6,29",Empleo informal,Secundario completo,Si,35 a 44,Aprobado
+L-2026-1032,F,La Plata,35.0,"4,98",Desempleado,Primario completo,Si,35 a 44,Desaprobado
+L-2026-1033,F,La Matanza,35.8,"8,41",Ama de casa / tareas de cuidado,Universitario incompleto,Si,25 a 34,Aprobado
+L-2026-1034,M,La Plata,34.9,"6,71",Ama de casa / tareas de cuidado,Secundario incompleto,Si,45 a 54,Aprobado
+L-2026-1035,M,Merlo,32.0,"6,56",Empleado en relación de dependencia,Secundario completo,Si,55 y más,Aprobado
+L-2026-1036,M,La Plata,37.2,"6,03",Ama de casa / tareas de cuidado,Terciario completo,Si,55 y más,Aprobado
+L-2026-1037,F,Lomas de Zamora,32.8,"8,56",Ama de casa / tareas de cuidado,Secundario incompleto,No,45 a 54,Destacado
+L-2026-1038,F,General San Martín,30.2,"4,11",Empleado en relación de dependencia,Primario completo,Si,55 y más,Desaprobado
+L-2026-1039,M,Mar del Plata,36.5,"6,18",Monotributista / independiente,Secundario incompleto,Si,25 a 34,Aprobado
+L-2026-1040,F,Lanús,31.8,"8,42",Monotributista / independiente,Secundario incompleto,Si,25 a 34,Aprobado
+L-2026-1041,F,Lanús,39.4,"7,57",Empleado en relación de dependencia,Secundario incompleto,Si,35 a 44,Aprobado
+L-2026-1042,F,La Plata,39.5,"7,14",Monotributista / independiente,Secundario completo,Si,35 a 44,Aprobado
+L-2026-1043,F,Lomas de Zamora,39.1,"7,46",Empleado en relación de dependencia,Terciario en curso,Si,45 a 54,Aprobado
+L-2026-1044,M,La Plata,33.7,"6,11",Monotributista / independiente,Secundario incompleto,No,25 a 34,Aprobado
+L-2026-1045,F,La Plata,30.2,"8,38",Empleado en relación de dependencia,Secundario completo,Si,45 a 54,Aprobado
+L-2026-1046,M,La Matanza,39.3,"3,82",Desempleado,Sin escolaridad formal,Si,35 a 44,Desaprobado
+L-2026-1047,F,Quilmes,34.3,"3,11",Ama de casa / tareas de cuidado,Secundario incompleto,Si,18 a 24,Desaprobado
+L-2026-1048,F,Lomas de Zamora,39.7,"7,16",Empleo informal,Secundario incompleto,No,25 a 34,Aprobado
+L-2026-1049,M,La Matanza,39.6,"7,46",Desempleado,Sin escolaridad formal,Si,18 a 24,Aprobado
+L-2026-1050,F,La Plata,38.5,"5,89",Ama de casa / tareas de cuidado,Universitario incompleto,Si,55 y más,Desaprobado
+L-2026-1051,M,Merlo,32.9,"7,75",Empleado en relación de dependencia,Secundario completo,Si,25 a 34,Aprobado
+L-2026-1052,M,La Plata,33.9,"8,96",Ama de casa / tareas de cuidado,Universitario completo,Si,45 a 54,Destacado
+L-2026-1053,M,La Matanza,38.5,"4,73",Ama de casa / tareas de cuidado,Universitario incompleto,Si,18 a 24,Desaprobado
+L-2026-1054,M,Mar del Plata,33.2,"8,28",Empleo informal,Secundario completo,No,45 a 54,Aprobado
+L-2026-1055,M,Lanús,31.7,"8,37",Monotributista / independiente,Secundario completo,Si,35 a 44,Aprobado
+L-2026-1056,M,La Plata,35.6,"4,45",Empleado en relación de dependencia,Primario completo,Si,35 a 44,Desaprobado
+L-2026-1057,F,Quilmes,39.4,"8,33",Monotributista / independiente,Universitario incompleto,Si,45 a 54,Aprobado
+L-2026-1058,F,General San Martín,37.0,"6,11",Monotributista / independiente,Secundario incompleto,Si,18 a 24,Aprobado
+L-2026-1059,F,La Plata,35.7,"9,06",Empleo informal,Sin escolaridad formal,Si,45 a 54,Destacado
+L-2026-1060,F,General San Martín,31.0,"8,47",Ama de casa / tareas de cuidado,Primario completo,Si,25 a 34,Aprobado
+L-2026-1061,F,Mar del Plata,36.2,"7,49",Monotributista / independiente,Secundario completo,No,25 a 34,Aprobado
+L-2026-1062,F,Quilmes,39.9,"5,87",Trabajos esporádicos,Secundario completo,Si,55 y más,Desaprobado
+L-2026-1063,M,Quilmes,31.4,"8,10",Ama de casa / tareas de cuidado,Secundario completo,Si,25 a 34,Aprobado
+L-2026-1064,F,Lomas de Zamora,35.2,"7,04",Empleado en relación de dependencia,Terciario en curso,Si,25 a 34,Aprobado
+L-2026-1065,F,La Matanza,38.8,"8,58",Empleado en relación de dependencia,Secundario completo,Si,45 a 54,Destacado
+L-2026-1066,M,Avellaneda,37.4,"8,03",Empleado en relación de dependencia,Secundario incompleto,Si,55 y más,Aprobado
+L-2026-1067,F,La Plata,37.0,"9,99",Empleado en relación de dependencia,Terciario en curso,Si,25 a 34,Destacado
+L-2026-1068,M,La Matanza,37.0,"9,65",Empleado en relación de dependencia,Terciario completo,Si,45 a 54,Destacado
+L-2026-1069,F,La Matanza,33.6,"8,12",Empleado en relación de dependencia,Secundario completo,No,25 a 34,Aprobado
+L-2026-1070,M,Quilmes,32.9,"7,13",Monotributista / independiente,Primario completo,No,25 a 34,Aprobado
+L-2026-1071,M,Quilmes,38.1,"8,39",Empleado en relación de dependencia,Secundario completo,Si,35 a 44,Aprobado
+L-2026-1072,F,La Matanza,38.1,"6,57",Desempleado,Terciario completo,Si,35 a 44,Aprobado
+L-2026-1073,F,Lomas de Zamora,38.7,"7,55",Empleado en relación de dependencia,Secundario completo,Si,25 a 34,Aprobado
+L-2026-1074,M,La Plata,39.1,"2,45",Ama de casa / tareas de cuidado,Secundario incompleto,Si,35 a 44,Desaprobado
+L-2026-1075,M,Quilmes,35.1,"7,30",Monotributista / independiente,Primario completo,Si,45 a 54,Aprobado
+L-2026-1076,M,La Matanza,35.0,"7,30",Trabajos esporádicos,Secundario completo,Si,45 a 54,Aprobado
+L-2026-1077,M,General San Martín,38.0,"9,33",Empleado en relación de dependencia,Secundario completo,Si,25 a 34,Destacado
+L-2026-1078,F,Mar del Plata,36.5,"8,19",Monotributista / independiente,Terciario en curso,Si,25 a 34,Aprobado
+L-2026-1079,F,Merlo,37.0,"2,53",Trabajos esporádicos,Terciario en curso,Si,18 a 24,Desaprobado
+L-2026-1080,F,La Matanza,38.0,"7,89",Desempleado,Universitario incompleto,Si,35 a 44,Aprobado
+L-2026-1081,M,La Plata,38.9,"7,76",Desempleado,Universitario incompleto,Si,25 a 34,Aprobado
+L-2026-1082,M,La Matanza,33.4,"2,54",Empleado en relación de dependencia,Secundario incompleto,Si,18 a 24,Desaprobado
+L-2026-1083,F,Merlo,33.8,"3,40",Empleado en relación de dependencia,Secundario completo,Si,35 a 44,Desaprobado
+L-2026-1084,F,Avellaneda,30.9,"9,09",Empleo informal,Secundario completo,Si,25 a 34,Destacado
+L-2026-1085,F,La Plata,35.8,"5,61",Desempleado,Secundario completo,No,35 a 44,Desaprobado
+L-2026-1086,F,Quilmes,30.4,"4,05",Ama de casa / tareas de cuidado,Sin escolaridad formal,Si,55 y más,Desaprobado
+L-2026-1087,M,Almirante Brown,34.7,"6,99",Ama de casa / tareas de cuidado,Universitario incompleto,Si,35 a 44,Aprobado
+L-2026-1088,M,Lomas de Zamora,35.4,"8,16",Monotributista / independiente,Secundario incompleto,Si,55 y más,Aprobado
+L-2026-1089,M,Lomas de Zamora,32.9,"2,59",Empleo informal,Secundario incompleto,Si,55 y más,Desaprobado
+L-2026-1090,F,La Plata,35.9,"3,96",Empleado en relación de dependencia,Universitario completo,Si,35 a 44,Desaprobado
+L-2026-1091,F,La Matanza,30.3,"9,19",Monotributista / independiente,Secundario completo,Si,55 y más,Destacado
+L-2026-1092,M,Merlo,30.4,"7,23",Monotributista / independiente,Universitario incompleto,No,25 a 34,Aprobado
+L-2026-1093,M,Merlo,38.2,"7,58",Ama de casa / tareas de cuidado,Secundario incompleto,No,25 a 34,Aprobado
+L-2026-1094,M,Quilmes,33.6,"2,30",Empleado en relación de dependencia,Universitario incompleto,Si,18 a 24,Desaprobado
+L-2026-1095,M,La Plata,31.3,"6,32",Empleado en relación de dependencia,Secundario completo,Si,25 a 34,Aprobado
+L-2026-1096,F,La Plata,35.2,"8,71",Ama de casa / tareas de cuidado,Terciario completo,Si,25 a 34,Destacado
+L-2026-1097,F,General San Martín,37.7,"8,77",Monotributista / independiente,Universitario completo,Si,25 a 34,Destacado
+L-2026-1098,F,Merlo,32.2,"8,24",Ama de casa / tareas de cuidado,Secundario incompleto,No,25 a 34,Aprobado
+L-2026-1099,F,Avellaneda,36.2,"4,66",Empleado en relación de dependencia,Terciario en curso,Si,18 a 24,Desaprobado
+L-2026-1100,F,Almirante Brown,30.9,"2,77",Ama de casa / tareas de cuidado,Sin escolaridad formal,Si,18 a 24,Desaprobado
