@@ -1,0 +1,83 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Dirección de correo del administrador único del sistema.
+    function esAdminUnico() {
+      return request.auth != null
+        && request.auth.token.email != null
+        && request.auth.token.email.lower() == 'admin@senati.pe';
+    }
+
+    // Solo cuentas autenticadas con dominio institucional @senati.pe
+    function esUsuarioInstitucional() {
+      return request.auth != null
+        && request.auth.token.email != null
+        && request.auth.token.email.lower().matches('.*@senati[.]pe$');
+    }
+
+    function esPropioUsuario(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+
+    // ---------------------------------------------------------------
+    // Colección "usuarios": perfiles de acceso (rol, estado, etc.)
+    // ---------------------------------------------------------------
+    match /usuarios/{uid} {
+      // Lectura: solo usuarios institucionales autenticados.
+      allow read: if esUsuarioInstitucional();
+
+      // Creación: el propio usuario institucional puede crear su perfil,
+      // pero siempre debe iniciar en estado "pendiente" (salvo el admin único).
+      allow create: if esUsuarioInstitucional()
+        && esPropioUsuario(uid)
+        && (
+          esAdminUnico()
+          || request.resource.data.estado == 'pendiente'
+        );
+
+      // Actualización de rol/estado: exclusiva del administrador único.
+      // El propio usuario puede actualizar campos no sensibles de su perfil
+      // (por ejemplo nombre), pero nunca su rol ni su estado.
+      allow update: if esUsuarioInstitucional()
+        && (
+          esAdminUnico()
+          || (
+            esPropioUsuario(uid)
+            && request.resource.data.rol == resource.data.rol
+            && request.resource.data.estado == resource.data.estado
+          )
+        );
+
+      // Eliminación: exclusiva del administrador único.
+      allow delete: if esAdminUnico();
+    }
+
+    // ---------------------------------------------------------------
+    // Colección "datasets": datasets compartidos para comparación A vs B
+    // ---------------------------------------------------------------
+    match /datasets/{datasetId} {
+      allow read: if esUsuarioInstitucional();
+      allow create: if esUsuarioInstitucional()
+        && request.resource.data.propietarioUid == request.auth.uid;
+      allow update: if esUsuarioInstitucional()
+        && (esAdminUnico() || resource.data.propietarioUid == request.auth.uid);
+      allow delete: if esAdminUnico()
+        || (esUsuarioInstitucional() && resource.data.propietarioUid == request.auth.uid);
+    }
+
+    // ---------------------------------------------------------------
+    // Colección "alumnos": datos académicos
+    // ---------------------------------------------------------------
+    match /alumnos/{alumnoId} {
+      allow read: if esUsuarioInstitucional();
+      allow write: if esAdminUnico();
+    }
+
+    // Por defecto: todo lo demás requiere ser administrador único.
+    match /{document=**} {
+      allow read, write: if esAdminUnico();
+    }
+  }
+}
