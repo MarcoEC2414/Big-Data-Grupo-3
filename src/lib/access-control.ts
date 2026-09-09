@@ -28,6 +28,8 @@ export interface PerfilUsuario {
   email?: string;
   rol: "administrador" | "profesor" | "analista";
   estado: EstadoUsuario;
+  cursosAsignados?: string[];
+  sede?: string;
   creadoEn?: unknown;
   actualizadoEn?: unknown;
   aprobadoPor?: string;
@@ -56,18 +58,20 @@ function getSecondaryAuth() {
 }
 
 /**
- * Crea un usuario en Firebase Authentication y registra su perfil y rol en Firestore
+ * Crea un usuario en Firebase Authentication y registra su perfil, rol y cursos asignados en Firestore
  */
 export async function crearUsuarioPorAdmin({
   nombre,
   correo,
   password,
   rol,
+  cursosAsignados = ["Análisis de Datos / Big Data"],
 }: {
   nombre: string;
   correo: string;
   password: string;
   rol: "profesor" | "analista";
+  cursosAsignados?: string[];
 }): Promise<{ uid: string; correo: string }> {
   const secondaryAuth = getSecondaryAuth();
   const correoLimpio = normalizarCorreo(correo);
@@ -89,6 +93,7 @@ export async function crearUsuarioPorAdmin({
       email: correoLimpio,
       rol,
       estado: "aprobado",
+      cursosAsignados,
       creadoEn: serverTimestamp(),
       actualizadoEn: serverTimestamp(),
     });
@@ -125,6 +130,7 @@ export async function asegurarPerfilUsuario(user: User, nombre?: string) {
       ...perfilActual,
       rol: normalizarRol(perfilActual.rol),
       estado: perfilActual.estado || "aprobado",
+      cursosAsignados: perfilActual.cursosAsignados || ["Análisis de Datos / Big Data"],
     };
   }
 
@@ -136,6 +142,7 @@ export async function asegurarPerfilUsuario(user: User, nombre?: string) {
     email: user.email || "",
     rol: esAdmin ? "administrador" : "profesor",
     estado: "aprobado",
+    cursosAsignados: ["Análisis de Datos / Big Data"],
     creadoEn: serverTimestamp(),
     actualizadoEn: serverTimestamp(),
   };
@@ -155,6 +162,7 @@ export function escucharPerfilUsuario(uid: string, callback: (perfil: PerfilUsua
       ...data,
       rol: normalizarRol(data.rol),
       estado: data.estado || "aprobado",
+      cursosAsignados: data.cursosAsignados || ["Análisis de Datos / Big Data"],
     });
   });
 }
@@ -170,6 +178,7 @@ export function escucharUsuarios(callback: (usuarios: PerfilUsuario[]) => void) 
         nombre: d.nombre || "Usuario",
         rol: normalizarRol(d.rol),
         estado: d.estado || "aprobado",
+        cursosAsignados: d.cursosAsignados || ["Análisis de Datos / Big Data"],
       };
     });
     callback(list);

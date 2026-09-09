@@ -2,11 +2,12 @@ import React, { createContext, useContext, useEffect, useState, type ReactNode }
 import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
   type User,
 } from "firebase/auth";
-import { doc, getDoc, setDoc, onSnapshot, serverTimestamp } from "firebase/firestore";
-import { auth, db } from "@/lib/firebase";
+import { doc, setDoc, onSnapshot, serverTimestamp } from "firebase/firestore";
+import { auth, db, googleProvider } from "@/lib/firebase";
 import { esAdministradorUnico } from "@/lib/auth-config";
 
 export type RolUsuario = "administrador" | "profesor" | "analista";
@@ -16,8 +17,11 @@ export interface UsuarioPerfil {
   uid: string;
   email: string;
   nombre: string;
+  fotoUrl?: string;
   rol: RolUsuario;
   estado: EstadoUsuario;
+  cursosAsignados?: string[];
+  sede?: string;
   creadoEn?: unknown;
   actualizadoEn?: unknown;
 }
@@ -28,6 +32,7 @@ interface AuthContextType {
   perfil: UsuarioPerfil | null;
   loading: boolean;
   login: (email: string, pass: string) => Promise<void>;
+  loginGoogle: () => Promise<void>;
   logout: () => Promise<void>;
   isAdmin: boolean;
   isProfesor: boolean;
@@ -71,47 +76,58 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       try {
         const userDocRef = doc(db, "usuarios", currentUser.uid);
-        const userDocSnap = await getDoc(userDocRef);
 
-        if (!userDocSnap.exists()) {
-          const esAdminPorDefecto = esAdministradorUnico(currentUser.email);
-          const rolAsignado: RolUsuario = esAdminPorDefecto ? "administrador" : "profesor";
+        unsubscribeDoc = onSnapshot(
+          userDocRef,
+          async (snap) => {
+            if (snap.exists()) {
+              const data = snap.data() as Record<string, any>;
+              const rolNorm = normalizarRol(data["rol"]);
+              const est = (data["estado"] as EstadoUsuario) || "aprobado";
 
-          const nuevoPerfil: UsuarioPerfil = {
-            uid: currentUser.uid,
-            email: currentUser.email || "",
-            nombre: currentUser.displayName || currentUser.email?.split("@")[0] || "Usuario",
-            rol: rolAsignado,
-            estado: "aprobado",
-            creadoEn: serverTimestamp(),
-            actualizadoEn: serverTimestamp(),
-          };
+              const perf: UsuarioPerfil = {
+                uid: currentUser.uid,
+                email: currentUser.email || data["correo"] || data["email"] || "",
+                nombre: data["nombre"] || currentUser.displayName || currentUser.email?.split("@")[0] || "Usuario",
+                fotoUrl: currentUser.photoURL || data["fotoUrl"] || undefined,
+                rol: rolNorm,
+                estado: est,
+                cursosAsignados: data["cursosAsignados"] || ["Análisis de Datos / Big Data"],
+                sede: data["sede"] || "Sede Central",
+                creadoEn: data["creadoEn"],
+                actualizadoEn: data["actualizadoEn"],
+              };
 
-          await setDoc(userDocRef, nuevoPerfil, { merge: true });
-        }
+              setRol(rolNorm);
+              setPerfil(perf);
+              setLoading(false);
+            } else {
+              const esAdmin = esAdministradorUnico(currentUser.email);
+              const rolInicial: RolUsuario = esAdmin ? "administrador" : "profesor";
 
-        // Escucha en tiempo real cambios en el rol o estado de acceso
-        unsubscribeDoc = onSnapshot(userDocRef, (snap) => {
-          if (snap.exists()) {
-            const data = snap.data();
-            const rolNorm = normalizarRol(data.rol);
-            const est = (data.estado as EstadoUsuario) || "aprobado";
-            const perf: UsuarioPerfil = {
-              uid: currentUser.uid,
-              email: currentUser.email || data.correo || data.email || "",
-              nombre: data.nombre || currentUser.displayName || "Usuario",
-              rol: rolNorm,
-              estado: est,
-              creadoEn: data.creadoEn,
-              actualizadoEn: data.actualizadoEn,
-            };
-            setRol(rolNorm);
-            setPerfil(perf);
+              const nuevoPerfil: Record<string, any> = {
+                uid: currentUser.uid,
+                email: currentUser.email || "",
+                nombre: currentUser.displayName || currentUser.email?.split("@")[0] || "Usuario",
+                fotoUrl: currentUser.photoURL || null,
+                rol: rolInicial,
+                estado: "aprobado",
+                cursosAsignados: ["Análisis de Datos / Big Data"],
+                sede: "Sede Central",
+                creadoEn: serverTimestamp(),
+                actualizadoEn: serverTimestamp(),
+              };
+
+              await setDoc(userDocRef, nuevoPerfil, { merge: true });
+            }
+          },
+          (error) => {
+            console.error("Error al suscribirse al documento de usuario:", error);
+            setLoading(false);
           }
-          setLoading(false);
-        });
+        );
       } catch (error) {
-        console.error("Error al sincronizar perfil de usuario:", error);
+        console.error("Error general en autenticación:", error);
         setRol("profesor");
         setLoading(false);
       }
@@ -127,8 +143,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setLoading(true);
     try {
       await signInWithEmailAndPassword(auth, email, pass);
-    } finally {
-      // El onAuthStateChanged se encarga de cargar el perfil y setLoading(false)
+    } catch (err) {
+      setLoading(false);
+      throw err;
+    }
+  };
+
+  const loginGoogle = async () => {
+    setLoading(true);
+    try {
+      await signInWithPopup(auth, googleProvider);
+    } catch (err) {
+      setLoading(false);
+      throw err;
     }
   };
 
@@ -152,6 +179,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     perfil,
     loading,
     login,
+    loginGoogle,
     logout,
     isAdmin: rol === "administrador",
     isProfesor: rol === "profesor",

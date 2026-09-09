@@ -5,16 +5,18 @@ import {
   ShieldCheck,
   ShieldX,
   UserCog,
-  Undo2,
   UserPlus,
   Loader2,
   CheckCircle2,
   Ban,
   UserCheck,
   Lock,
+  BookOpen,
 } from "lucide-react";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 import { Card, Shell } from "@/components/Shell";
-import { useAuth } from "@/contexts/AuthContext";
+import { useAuth, type RolUsuario, type EstadoUsuario } from "@/contexts/AuthContext";
 import { useUsuarios } from "@/hooks/useUsuarios";
 import {
   cambiarRol,
@@ -23,7 +25,6 @@ import {
   suspenderAccesoUsuario,
   revocarAccesoUsuario,
   type PerfilUsuario,
-  type EstadoUsuario,
 } from "@/lib/access-control";
 import {
   compartirDataset,
@@ -39,11 +40,14 @@ export const Route = createFileRoute("/admin")({
   component: AdminPanel,
 });
 
-function EstadoBadge({
-  estado,
-}: {
-  estado?: EstadoUsuario;
-}) {
+const CURSOS_DISPONIBLES = [
+  "Análisis de Datos / Big Data",
+  "Inteligencia Artificial Aplicada",
+  "Ciberseguridad y Redes",
+  "Desarrollo de Software",
+];
+
+function EstadoBadge({ estado }: { estado?: EstadoUsuario }) {
   const est = estado || "aprobado";
   const estilos: Record<string, string> = {
     aprobado: "bg-emerald-500/15 text-emerald-400 border-emerald-500/20",
@@ -64,7 +68,7 @@ function EstadoBadge({
   return (
     <span
       className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-bold ${
-        estilos[est] || estilos.aprobado
+        estilos[est] || estilos["aprobado"]
       }`}
     >
       {etiquetas[est] || "Acceso Permitido"}
@@ -80,6 +84,9 @@ function FilaUsuario({
   miUid: string | undefined;
 }) {
   const [procesando, setProcesando] = useState(false);
+  const [cursoSeleccionado, setCursoSeleccionado] = useState(
+    usuario.cursosAsignados?.[0] || "Análisis de Datos / Big Data"
+  );
 
   const ejecutar = async (accion: () => Promise<unknown>) => {
     setProcesando(true);
@@ -92,6 +99,16 @@ function FilaUsuario({
     }
   };
 
+  const handleCambiarCurso = async (nuevoCurso: string) => {
+    setCursoSeleccionado(nuevoCurso);
+    await ejecutar(async () => {
+      const userRef = doc(db, "usuarios", usuario.uid);
+      await updateDoc(userRef, {
+        cursosAsignados: [nuevoCurso],
+      });
+    });
+  };
+
   if (!miUid) return null;
   const esMiPropioUsuario = usuario.uid === miUid;
 
@@ -99,7 +116,7 @@ function FilaUsuario({
     <tr className="border-b border-border last:border-0 hover:bg-muted/20 transition-colors">
       <td className="py-3.5 pr-4">
         <p className="text-sm font-bold text-foreground">{usuario.nombre}</p>
-        <p className="text-xs text-muted-foreground">{usuario.correo}</p>
+        <p className="text-xs text-muted-foreground">{usuario.correo || usuario.email}</p>
         {esMiPropioUsuario && (
           <span className="inline-block mt-0.5 text-[10px] font-semibold text-primary">
             (Tu sesión actual)
@@ -110,7 +127,7 @@ function FilaUsuario({
       <td className="py-3.5 pr-4">
         {usuario.rol === "administrador" ? (
           <span className="inline-flex items-center rounded-lg border border-border bg-muted/40 px-2.5 py-1.5 text-xs font-semibold text-muted-foreground">
-            Administrador (único)
+            Administrador (Acceso Total)
           </span>
         ) : (
           <select
@@ -130,12 +147,33 @@ function FilaUsuario({
       </td>
 
       <td className="py-3.5 pr-4">
+        {usuario.rol === "administrador" ? (
+          <span className="text-xs text-muted-foreground italic">Todas las sedes</span>
+        ) : (
+          <div className="flex items-center gap-1.5">
+            <BookOpen className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+            <select
+              value={cursoSeleccionado}
+              disabled={procesando || esMiPropioUsuario}
+              onChange={(e) => handleCambiarCurso(e.target.value)}
+              className="rounded-lg border border-border bg-card px-2 py-1 text-xs font-medium text-foreground disabled:opacity-50 max-w-[180px] truncate"
+            >
+              {CURSOS_DISPONIBLES.map((c) => (
+                <option key={c} value={c}>
+                  {c}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+      </td>
+
+      <td className="py-3.5 pr-4">
         <EstadoBadge estado={usuario.estado} />
       </td>
 
       <td className="py-3.5">
         <div className="flex flex-wrap items-center gap-2">
-          {/* Dar o reactivar acceso */}
           {usuario.estado !== "aprobado" && !esMiPropioUsuario && (
             <button
               type="button"
@@ -148,7 +186,6 @@ function FilaUsuario({
             </button>
           )}
 
-          {/* Suspender acceso temporalmente */}
           {usuario.estado === "aprobado" && !esMiPropioUsuario && (
             <button
               type="button"
@@ -161,7 +198,6 @@ function FilaUsuario({
             </button>
           )}
 
-          {/* Revocar acceso */}
           {usuario.estado !== "revocado" && !esMiPropioUsuario && (
             <button
               type="button"
@@ -184,6 +220,7 @@ function FormularioNuevoUsuario() {
   const [correo, setCorreo] = useState("");
   const [password, setPassword] = useState("");
   const [rol, setRol] = useState<"profesor" | "analista">("profesor");
+  const [curso, setCurso] = useState("Análisis de Datos / Big Data");
   const [guardando, setGuardando] = useState(false);
   const [mensaje, setMensaje] = useState<{ tipo: "exito" | "error"; texto: string } | null>(null);
 
@@ -211,16 +248,17 @@ function FormularioNuevoUsuario() {
     }
 
     try {
-      const res = await crearUsuarioPorAdmin({
+      await crearUsuarioPorAdmin({
         nombre: nombre.trim(),
         correo: correo.trim().toLowerCase(),
         password,
         rol,
+        cursosAsignados: [curso],
       });
 
       setMensaje({
         tipo: "exito",
-        texto: `Usuario "${nombre}" creado exitosamente con credenciales activas y rol de ${rol}. El usuario ya puede iniciar sesión en la plataforma con su correo y contraseña.`,
+        texto: `Usuario "${nombre}" creado exitosamente con credenciales activas, rol de ${rol} y curso asignado: ${curso}.`,
       });
 
       setNombre("");
@@ -250,7 +288,7 @@ function FormularioNuevoUsuario() {
         <div>
           <h2 className="text-sm font-bold text-foreground">Crear Nuevo Usuario</h2>
           <p className="text-xs text-muted-foreground">
-            Crea la cuenta institucional directamente. El usuario podrá iniciar sesión con estas credenciales según su rol.
+            Crea la cuenta institucional directamente y asigna su curso de monitoreo.
           </p>
         </div>
       </div>
@@ -272,7 +310,7 @@ function FormularioNuevoUsuario() {
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <form onSubmit={handleSubmit} className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
         <div>
           <label className="text-xs font-semibold text-foreground">Nombres y Apellidos</label>
           <input
@@ -311,6 +349,21 @@ function FormularioNuevoUsuario() {
             onChange={(e) => setPassword(e.target.value)}
             className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2 text-xs text-foreground outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
           />
+        </div>
+
+        <div>
+          <label className="text-xs font-semibold text-foreground">Curso Asignado</label>
+          <select
+            value={curso}
+            onChange={(e) => setCurso(e.target.value)}
+            className="mt-1 w-full rounded-lg border border-border bg-card px-3 py-2 text-xs font-semibold text-foreground outline-none focus:border-primary"
+          >
+            {CURSOS_DISPONIBLES.map((c) => (
+              <option key={c} value={c}>
+                {c}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div>
@@ -374,6 +427,7 @@ function TablaUsuarios({
             <tr className="border-b border-border text-xs uppercase tracking-wide text-muted-foreground bg-muted/30">
               <th className="py-2.5 px-3 font-semibold">Usuario</th>
               <th className="py-2.5 px-3 font-semibold">Rol Asignado</th>
+              <th className="py-2.5 px-3 font-semibold">Cursos Asignados</th>
               <th className="py-2.5 px-3 font-semibold">Estado de Acceso</th>
               <th className="py-2.5 px-3 font-semibold">Acciones Administrativas</th>
             </tr>
@@ -447,7 +501,9 @@ function GestionDatasets({ usuarios }: { usuarios: PerfilUsuario[] }) {
                   >
                     <div>
                       <strong className="block text-foreground">{usuario.nombre}</strong>
-                      <span className="text-[11px] text-muted-foreground">{usuario.correo}</span>
+                      <span className="text-[11px] text-muted-foreground">
+                        {usuario.correo || usuario.email}
+                      </span>
                     </div>
                     <span className={permitido ? "text-primary font-bold" : "text-muted-foreground"}>
                       {permitido ? "Con acceso" : "Dar acceso"}
@@ -500,7 +556,7 @@ function AdminPanel() {
   return (
     <Shell
       title="Administración de Accesos y Usuarios"
-      subtitle="Crea usuarios, asigna roles, modifica permisos y suspende o revoca el acceso al sistema."
+      subtitle="Crea usuarios, asigna roles y cursos, modifica permisos y suspende o revoca el acceso al sistema."
       esAdmin={true}
     >
       <div className="flex items-center gap-3">
@@ -517,14 +573,12 @@ function AdminPanel() {
         </div>
       </div>
 
-      {/* 1. Crear usuarios con rol y acceso */}
       <FormularioNuevoUsuario />
 
       {cargandoUsuarios && (
         <p className="mt-4 text-sm text-muted-foreground">Cargando directorio de usuarios…</p>
       )}
 
-      {/* 2, 3, 4, 5. Asignar rol, dar acceso, modificar permisos, suspender o revocar */}
       <TablaUsuarios
         titulo="Directorio Central de Usuarios y Permisos"
         usuarios={usuarios}
