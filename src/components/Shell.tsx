@@ -32,11 +32,11 @@ export function Badge({ apto }: { apto: boolean }) {
     <span
       className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold ${
         apto
-          ? "border-emerald-500/20 bg-emerald-500/10 text-emerald-400"
-          : "border-rose-500/20 bg-rose-500/10 text-rose-400"
+          ? "border-emerald-500/20 bg-emerald-500/10 text-emerald-500 dark:text-emerald-400"
+          : "border-rose-500/20 bg-rose-500/10 text-rose-500 dark:text-rose-400"
       }`}
     >
-      <span className={`h-1.5 w-1.5 rounded-full ${apto ? "bg-emerald-400" : "bg-rose-400"}`} />
+      <span className={`h-1.5 w-1.5 rounded-full ${apto ? "bg-emerald-500" : "bg-rose-500"}`} />
       {apto ? "Apto para rendir examen" : "No apto para rendir examen"}
     </span>
   );
@@ -50,7 +50,6 @@ export function Card({
 }: {
   children: ReactNode;
   className?: string;
-  /** Aplica hover elevado + realce de borde morado, para tarjetas clicables/interactivas. */
   interactive?: boolean;
   as?: any;
 }) {
@@ -66,7 +65,6 @@ export function Card({
   );
 }
 
-/** Envoltorio de entrada suave para vistas y tarjetas (fade + slide-up). */
 export function FadeIn({
   children,
   delay = 0,
@@ -88,7 +86,6 @@ export function FadeIn({
   );
 }
 
-/** Contenedor con stagger sutil para grupos de tarjetas (p. ej. KPIs). */
 export function StaggerGroup({
   children,
   className = "",
@@ -137,10 +134,9 @@ export function Shell({
   esAdmin?: boolean;
 }) {
   const navigate = useNavigate();
-  const { user, rol, loading, logout, isAdmin, isAccesoPermitido } = useAuth();
+  const { user, perfil, rol, loading, logout, isAccesoPermitido } = useAuth();
   const [open, setOpen] = useState(false);
 
-  // Redirigir a /login si no hay sesión activa una vez que terminó de cargar
   useEffect(() => {
     if (!loading && !user) {
       navigate({ to: "/login" });
@@ -157,7 +153,6 @@ export function Shell({
     }
   };
 
-  // Mientras Firebase valida la sesión, mostrar un loading simple (evita parpadeo)
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-surface font-sans">
@@ -179,12 +174,10 @@ export function Shell({
     );
   }
 
-  // Si no hay usuario y no está cargando, retornar null mientras el useEffect redirige
   if (!user) {
     return null;
   }
 
-  // Si el acceso fue revocado o suspendido por el Administrador
   if (!isAccesoPermitido) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-surface p-6 font-sans">
@@ -213,7 +206,6 @@ export function Shell({
     );
   }
 
-  // Filtrar el menú: la sección 'Administrador' solo es visible si rol === 'administrador'
   const navItems = NAV.filter((item) => {
     if ("adminOnly" in item && item.adminOnly) {
       return rol === "administrador";
@@ -243,29 +235,29 @@ export function Shell({
               <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-purple-700 text-white shadow-glow">
                 <GraduationCap className="h-4 w-4" />
               </span>
-              <span className="text-xs font-bold tracking-tight text-white">SENATI</span>
+              <span className="text-xs font-bold tracking-tight text-foreground">SENATI</span>
             </div>
-            <p className="mt-1.5 ml-1.5 text-[11px] text-slate-400">Gestión Docente</p>
+            <p className="mt-1.5 ml-1.5 text-[11px] text-muted-foreground">Gestión Docente</p>
 
             {/* Perfil del usuario autenticado */}
-            <div className="mt-5 rounded-2xl border border-white/6 bg-[#0d0f16] p-3.5">
+            <div className="mt-5 rounded-2xl border border-border bg-muted/40 p-3.5">
               <div className="flex items-center gap-2">
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-purple-500/15 text-purple-400">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-purple-500/15 text-purple-600 dark:text-purple-400">
                   <UserCheck className="h-3.5 w-3.5" />
                 </span>
                 <div className="overflow-hidden">
-                  <p className="truncate text-xs font-bold text-white">
-                    {user.displayName || user.email?.split("@")[0] || "Usuario"}
+                  <p className="truncate text-xs font-bold text-foreground">
+                    {perfil?.nombre || user.displayName || user.email?.split("@")[0] || "Usuario"}
                   </p>
-                  <p className="truncate text-[11px] text-slate-400">{user.email}</p>
+                  <p className="truncate text-[11px] text-muted-foreground">{user.email}</p>
                 </div>
               </div>
               <div className="mt-2.5 flex items-center justify-between">
-                <span className="inline-flex items-center rounded-full bg-purple-500/10 border border-purple-500/20 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-purple-400">
+                <span className="inline-flex items-center rounded-full bg-purple-500/10 border border-purple-500/20 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-purple-600 dark:text-purple-300">
                   {rolLabel}
                 </span>
-                <span className="flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold text-emerald-400">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+                <span className="flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold text-emerald-600 dark:text-emerald-400">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400"></span>
                   Activo
                 </span>
               </div>
@@ -277,10 +269,10 @@ export function Shell({
                   key={to}
                   to={to}
                   onClick={() => setOpen(false)}
-                  className="flex items-center gap-3 rounded-full px-3.5 py-2.5 text-sm font-semibold text-slate-400 transition-all duration-200 hover:bg-purple-500/10 hover:text-purple-300"
+                  className="flex items-center gap-3 rounded-full px-3.5 py-2.5 text-sm font-semibold text-muted-foreground transition-all duration-200 hover:bg-purple-500/10 hover:text-purple-600 dark:hover:text-purple-300"
                   activeProps={{
                     className:
-                      "bg-purple-500/15 !text-white shadow-[inset_0_0_0_1px_rgba(168,85,247,0.35)]",
+                      "bg-purple-500/15 !text-foreground shadow-[inset_0_0_0_1px_rgba(168,85,247,0.35)]",
                   }}
                 >
                   <Icon className="h-4.5 w-4.5" />
@@ -291,16 +283,16 @@ export function Shell({
           </div>
 
           <div className="space-y-3 pt-4">
-            <div className="rounded-2xl border border-white/6 bg-[#0d0f16] p-3.5">
-              <p className="text-xs font-semibold text-white">Red académica sincronizada</p>
-              <p className="mt-1 flex items-center gap-1.5 text-xs text-slate-400">
-                <Wifi className="h-3.5 w-3.5 text-emerald-400" /> Firestore en tiempo real
+            <div className="rounded-2xl border border-border bg-muted/40 p-3.5">
+              <p className="text-xs font-semibold text-foreground">Red académica sincronizada</p>
+              <p className="mt-1 flex items-center gap-1.5 text-xs text-muted-foreground">
+                <Wifi className="h-3.5 w-3.5 text-emerald-500 dark:text-emerald-400" /> Firestore en tiempo real
               </p>
             </div>
             <button
               onClick={handleCerrarSesion}
               type="button"
-              className="flex w-full items-center gap-2 rounded-full px-3.5 py-2 text-sm font-semibold text-slate-400 transition-colors hover:bg-rose-500/10 hover:text-rose-400"
+              className="flex w-full items-center gap-2 rounded-full px-3.5 py-2 text-sm font-semibold text-muted-foreground transition-colors hover:bg-rose-500/10 hover:text-rose-600 dark:hover:text-rose-400"
             >
               <LogOut className="h-4 w-4" /> Cerrar sesión
             </button>
@@ -309,22 +301,22 @@ export function Shell({
 
         {/* Contenido principal */}
         <main className="min-h-screen w-full lg:pl-64 print:pl-0">
-          <header className="flex flex-wrap items-start justify-between gap-3 border-b border-white/6 bg-card px-6 py-5 print:hidden">
+          <header className="flex flex-wrap items-start justify-between gap-3 border-b border-border bg-card px-6 py-5 print:hidden">
             <div className="flex items-start gap-3">
               <button
                 className="mt-1 lg:hidden"
                 onClick={() => setOpen((v) => !v)}
                 aria-label="Menú"
               >
-                <Menu className="h-5 w-5 text-slate-400" />
+                <Menu className="h-5 w-5 text-muted-foreground" />
               </button>
               <div>
-                <h1 className="text-2xl font-semibold tracking-tight text-white">{title}</h1>
-                {subtitle && <p className="mt-1 text-sm font-medium text-slate-400">{subtitle}</p>}
+                <h1 className="text-2xl font-semibold tracking-tight text-foreground">{title}</h1>
+                {subtitle && <p className="mt-1 text-sm font-medium text-muted-foreground">{subtitle}</p>}
               </div>
             </div>
             <div className="flex items-center gap-2.5">
-              <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 text-xs font-bold text-emerald-400">
+              <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 text-xs font-bold text-emerald-600 dark:text-emerald-400">
                 <Wifi className="h-3.5 w-3.5" /> Sincronizado en red
               </span>
               <ThemeToggle />
