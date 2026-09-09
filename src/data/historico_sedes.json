@@ -1,0 +1,1039 @@
+{
+  "meta": {
+    "titulo": "Histórico Institucional de Retención y Rendimiento Estudiantil",
+    "institucion": "SENATI - Dirección Zonal Lima Callao",
+    "rangoPeriodos": "2023-I a 2026-I",
+    "generadoDescripcion": "Dataset pre-agregado (rollup) por periodo, sede y carrera. No contiene datos de alumnos individuales."
+  },
+  "periodos": [
+    "2023-I",
+    "2023-II",
+    "2024-I",
+    "2024-II",
+    "2025-I",
+    "2025-II",
+    "2026-I"
+  ],
+  "sedes": [
+    "Independencia",
+    "Lima Centro",
+    "Surquillo",
+    "Arequipa"
+  ],
+  "carreras": [
+    "Ingeniería de Software con IA",
+    "Redes y Seguridad Informática",
+    "Diseño y Desarrollo Web",
+    "Administración Industrial"
+  ],
+  "registros": [
+    {
+      "periodo": "2023-I",
+      "sede": "Independencia",
+      "carrera": "Ingeniería de Software con IA",
+      "totalAlumnos": 235,
+      "tasaAptitud": 74.7,
+      "alumnosRiesgoPct": 18.0,
+      "asistenciaPromedio": 78.3
+    },
+    {
+      "periodo": "2023-II",
+      "sede": "Independencia",
+      "carrera": "Ingeniería de Software con IA",
+      "totalAlumnos": 248,
+      "tasaAptitud": 75.5,
+      "alumnosRiesgoPct": 16.5,
+      "asistenciaPromedio": 80.2
+    },
+    {
+      "periodo": "2024-I",
+      "sede": "Independencia",
+      "carrera": "Ingeniería de Software con IA",
+      "totalAlumnos": 250,
+      "tasaAptitud": 76.8,
+      "alumnosRiesgoPct": 15.3,
+      "asistenciaPromedio": 80.9
+    },
+    {
+      "periodo": "2024-II",
+      "sede": "Independencia",
+      "carrera": "Ingeniería de Software con IA",
+      "totalAlumnos": 266,
+      "tasaAptitud": 78.4,
+      "alumnosRiesgoPct": 13.9,
+      "asistenciaPromedio": 82.8
+    },
+    {
+      "periodo": "2025-I",
+      "sede": "Independencia",
+      "carrera": "Ingeniería de Software con IA",
+      "totalAlumnos": 272,
+      "tasaAptitud": 80.3,
+      "alumnosRiesgoPct": 12.2,
+      "asistenciaPromedio": 83.9
+    },
+    {
+      "periodo": "2025-II",
+      "sede": "Independencia",
+      "carrera": "Ingeniería de Software con IA",
+      "totalAlumnos": 273,
+      "tasaAptitud": 81.3,
+      "alumnosRiesgoPct": 11.0,
+      "asistenciaPromedio": 85.8
+    },
+    {
+      "periodo": "2026-I",
+      "sede": "Independencia",
+      "carrera": "Ingeniería de Software con IA",
+      "totalAlumnos": 291,
+      "tasaAptitud": 83.2,
+      "alumnosRiesgoPct": 8.8,
+      "asistenciaPromedio": 86.7
+    },
+    {
+      "periodo": "2023-I",
+      "sede": "Independencia",
+      "carrera": "Redes y Seguridad Informática",
+      "totalAlumnos": 185,
+      "tasaAptitud": 71.8,
+      "alumnosRiesgoPct": 19.6,
+      "asistenciaPromedio": 76.9
+    },
+    {
+      "periodo": "2023-II",
+      "sede": "Independencia",
+      "carrera": "Redes y Seguridad Informática",
+      "totalAlumnos": 195,
+      "tasaAptitud": 73.5,
+      "alumnosRiesgoPct": 18.7,
+      "asistenciaPromedio": 78.9
+    },
+    {
+      "periodo": "2024-I",
+      "sede": "Independencia",
+      "carrera": "Redes y Seguridad Informática",
+      "totalAlumnos": 197,
+      "tasaAptitud": 74.4,
+      "alumnosRiesgoPct": 17.3,
+      "asistenciaPromedio": 79.7
+    },
+    {
+      "periodo": "2024-II",
+      "sede": "Independencia",
+      "carrera": "Redes y Seguridad Informática",
+      "totalAlumnos": 208,
+      "tasaAptitud": 76.6,
+      "alumnosRiesgoPct": 15.4,
+      "asistenciaPromedio": 81.9
+    },
+    {
+      "periodo": "2025-I",
+      "sede": "Independencia",
+      "carrera": "Redes y Seguridad Informática",
+      "totalAlumnos": 217,
+      "tasaAptitud": 77.3,
+      "alumnosRiesgoPct": 13.2,
+      "asistenciaPromedio": 83.1
+    },
+    {
+      "periodo": "2025-II",
+      "sede": "Independencia",
+      "carrera": "Redes y Seguridad Informática",
+      "totalAlumnos": 212,
+      "tasaAptitud": 78.8,
+      "alumnosRiesgoPct": 11.7,
+      "asistenciaPromedio": 84.1
+    },
+    {
+      "periodo": "2026-I",
+      "sede": "Independencia",
+      "carrera": "Redes y Seguridad Informática",
+      "totalAlumnos": 220,
+      "tasaAptitud": 80.4,
+      "alumnosRiesgoPct": 10.5,
+      "asistenciaPromedio": 86.1
+    },
+    {
+      "periodo": "2023-I",
+      "sede": "Independencia",
+      "carrera": "Diseño y Desarrollo Web",
+      "totalAlumnos": 211,
+      "tasaAptitud": 73.1,
+      "alumnosRiesgoPct": 19.0,
+      "asistenciaPromedio": 77.6
+    },
+    {
+      "periodo": "2023-II",
+      "sede": "Independencia",
+      "carrera": "Diseño y Desarrollo Web",
+      "totalAlumnos": 219,
+      "tasaAptitud": 74.9,
+      "alumnosRiesgoPct": 17.8,
+      "asistenciaPromedio": 78.9
+    },
+    {
+      "periodo": "2024-I",
+      "sede": "Independencia",
+      "carrera": "Diseño y Desarrollo Web",
+      "totalAlumnos": 225,
+      "tasaAptitud": 75.8,
+      "alumnosRiesgoPct": 16.1,
+      "asistenciaPromedio": 80.4
+    },
+    {
+      "periodo": "2024-II",
+      "sede": "Independencia",
+      "carrera": "Diseño y Desarrollo Web",
+      "totalAlumnos": 234,
+      "tasaAptitud": 77.8,
+      "alumnosRiesgoPct": 14.3,
+      "asistenciaPromedio": 81.9
+    },
+    {
+      "periodo": "2025-I",
+      "sede": "Independencia",
+      "carrera": "Diseño y Desarrollo Web",
+      "totalAlumnos": 234,
+      "tasaAptitud": 79.3,
+      "alumnosRiesgoPct": 12.7,
+      "asistenciaPromedio": 83.0
+    },
+    {
+      "periodo": "2025-II",
+      "sede": "Independencia",
+      "carrera": "Diseño y Desarrollo Web",
+      "totalAlumnos": 244,
+      "tasaAptitud": 80.3,
+      "alumnosRiesgoPct": 10.9,
+      "asistenciaPromedio": 85.3
+    },
+    {
+      "periodo": "2026-I",
+      "sede": "Independencia",
+      "carrera": "Diseño y Desarrollo Web",
+      "totalAlumnos": 248,
+      "tasaAptitud": 82.3,
+      "alumnosRiesgoPct": 9.6,
+      "asistenciaPromedio": 86.5
+    },
+    {
+      "periodo": "2023-I",
+      "sede": "Independencia",
+      "carrera": "Administración Industrial",
+      "totalAlumnos": 192,
+      "tasaAptitud": 70.5,
+      "alumnosRiesgoPct": 21.6,
+      "asistenciaPromedio": 76.0
+    },
+    {
+      "periodo": "2023-II",
+      "sede": "Independencia",
+      "carrera": "Administración Industrial",
+      "totalAlumnos": 206,
+      "tasaAptitud": 71.1,
+      "alumnosRiesgoPct": 20.0,
+      "asistenciaPromedio": 77.6
+    },
+    {
+      "periodo": "2024-I",
+      "sede": "Independencia",
+      "carrera": "Administración Industrial",
+      "totalAlumnos": 205,
+      "tasaAptitud": 72.7,
+      "alumnosRiesgoPct": 18.4,
+      "asistenciaPromedio": 79.1
+    },
+    {
+      "periodo": "2024-II",
+      "sede": "Independencia",
+      "carrera": "Administración Industrial",
+      "totalAlumnos": 211,
+      "tasaAptitud": 74.3,
+      "alumnosRiesgoPct": 16.3,
+      "asistenciaPromedio": 80.2
+    },
+    {
+      "periodo": "2025-I",
+      "sede": "Independencia",
+      "carrera": "Administración Industrial",
+      "totalAlumnos": 225,
+      "tasaAptitud": 75.3,
+      "alumnosRiesgoPct": 14.8,
+      "asistenciaPromedio": 82.2
+    },
+    {
+      "periodo": "2025-II",
+      "sede": "Independencia",
+      "carrera": "Administración Industrial",
+      "totalAlumnos": 231,
+      "tasaAptitud": 76.6,
+      "alumnosRiesgoPct": 13.5,
+      "asistenciaPromedio": 84.0
+    },
+    {
+      "periodo": "2026-I",
+      "sede": "Independencia",
+      "carrera": "Administración Industrial",
+      "totalAlumnos": 239,
+      "tasaAptitud": 78.2,
+      "alumnosRiesgoPct": 12.1,
+      "asistenciaPromedio": 85.3
+    },
+    {
+      "periodo": "2023-I",
+      "sede": "Lima Centro",
+      "carrera": "Ingeniería de Software con IA",
+      "totalAlumnos": 318,
+      "tasaAptitud": 79.3,
+      "alumnosRiesgoPct": 14.2,
+      "asistenciaPromedio": 82.0
+    },
+    {
+      "periodo": "2023-II",
+      "sede": "Lima Centro",
+      "carrera": "Ingeniería de Software con IA",
+      "totalAlumnos": 327,
+      "tasaAptitud": 80.7,
+      "alumnosRiesgoPct": 12.5,
+      "asistenciaPromedio": 83.0
+    },
+    {
+      "periodo": "2024-I",
+      "sede": "Lima Centro",
+      "carrera": "Ingeniería de Software con IA",
+      "totalAlumnos": 340,
+      "tasaAptitud": 81.8,
+      "alumnosRiesgoPct": 11.8,
+      "asistenciaPromedio": 84.9
+    },
+    {
+      "periodo": "2024-II",
+      "sede": "Lima Centro",
+      "carrera": "Ingeniería de Software con IA",
+      "totalAlumnos": 347,
+      "tasaAptitud": 83.8,
+      "alumnosRiesgoPct": 10.3,
+      "asistenciaPromedio": 85.8
+    },
+    {
+      "periodo": "2025-I",
+      "sede": "Lima Centro",
+      "carrera": "Ingeniería de Software con IA",
+      "totalAlumnos": 366,
+      "tasaAptitud": 85.1,
+      "alumnosRiesgoPct": 8.5,
+      "asistenciaPromedio": 87.1
+    },
+    {
+      "periodo": "2025-II",
+      "sede": "Lima Centro",
+      "carrera": "Ingeniería de Software con IA",
+      "totalAlumnos": 380,
+      "tasaAptitud": 85.7,
+      "alumnosRiesgoPct": 7.2,
+      "asistenciaPromedio": 87.9
+    },
+    {
+      "periodo": "2026-I",
+      "sede": "Lima Centro",
+      "carrera": "Ingeniería de Software con IA",
+      "totalAlumnos": 385,
+      "tasaAptitud": 88.0,
+      "alumnosRiesgoPct": 6.4,
+      "asistenciaPromedio": 89.6
+    },
+    {
+      "periodo": "2023-I",
+      "sede": "Lima Centro",
+      "carrera": "Redes y Seguridad Informática",
+      "totalAlumnos": 257,
+      "tasaAptitud": 75.9,
+      "alumnosRiesgoPct": 15.9,
+      "asistenciaPromedio": 81.2
+    },
+    {
+      "periodo": "2023-II",
+      "sede": "Lima Centro",
+      "carrera": "Redes y Seguridad Informática",
+      "totalAlumnos": 254,
+      "tasaAptitud": 77.7,
+      "alumnosRiesgoPct": 13.7,
+      "asistenciaPromedio": 82.4
+    },
+    {
+      "periodo": "2024-I",
+      "sede": "Lima Centro",
+      "carrera": "Redes y Seguridad Informática",
+      "totalAlumnos": 274,
+      "tasaAptitud": 78.8,
+      "alumnosRiesgoPct": 12.8,
+      "asistenciaPromedio": 82.9
+    },
+    {
+      "periodo": "2024-II",
+      "sede": "Lima Centro",
+      "carrera": "Redes y Seguridad Informática",
+      "totalAlumnos": 278,
+      "tasaAptitud": 80.8,
+      "alumnosRiesgoPct": 11.1,
+      "asistenciaPromedio": 84.7
+    },
+    {
+      "periodo": "2025-I",
+      "sede": "Lima Centro",
+      "carrera": "Redes y Seguridad Informática",
+      "totalAlumnos": 282,
+      "tasaAptitud": 81.8,
+      "alumnosRiesgoPct": 10.2,
+      "asistenciaPromedio": 85.9
+    },
+    {
+      "periodo": "2025-II",
+      "sede": "Lima Centro",
+      "carrera": "Redes y Seguridad Informática",
+      "totalAlumnos": 298,
+      "tasaAptitud": 84.1,
+      "alumnosRiesgoPct": 9.1,
+      "asistenciaPromedio": 87.2
+    },
+    {
+      "periodo": "2026-I",
+      "sede": "Lima Centro",
+      "carrera": "Redes y Seguridad Informática",
+      "totalAlumnos": 302,
+      "tasaAptitud": 84.8,
+      "alumnosRiesgoPct": 8.0,
+      "asistenciaPromedio": 88.4
+    },
+    {
+      "periodo": "2023-I",
+      "sede": "Lima Centro",
+      "carrera": "Diseño y Desarrollo Web",
+      "totalAlumnos": 274,
+      "tasaAptitud": 78.3,
+      "alumnosRiesgoPct": 14.8,
+      "asistenciaPromedio": 81.0
+    },
+    {
+      "periodo": "2023-II",
+      "sede": "Lima Centro",
+      "carrera": "Diseño y Desarrollo Web",
+      "totalAlumnos": 285,
+      "tasaAptitud": 79.0,
+      "alumnosRiesgoPct": 13.6,
+      "asistenciaPromedio": 82.3
+    },
+    {
+      "periodo": "2024-I",
+      "sede": "Lima Centro",
+      "carrera": "Diseño y Desarrollo Web",
+      "totalAlumnos": 293,
+      "tasaAptitud": 80.0,
+      "alumnosRiesgoPct": 12.3,
+      "asistenciaPromedio": 83.4
+    },
+    {
+      "periodo": "2024-II",
+      "sede": "Lima Centro",
+      "carrera": "Diseño y Desarrollo Web",
+      "totalAlumnos": 304,
+      "tasaAptitud": 82.5,
+      "alumnosRiesgoPct": 11.2,
+      "asistenciaPromedio": 84.6
+    },
+    {
+      "periodo": "2025-I",
+      "sede": "Lima Centro",
+      "carrera": "Diseño y Desarrollo Web",
+      "totalAlumnos": 321,
+      "tasaAptitud": 83.2,
+      "alumnosRiesgoPct": 9.5,
+      "asistenciaPromedio": 86.3
+    },
+    {
+      "periodo": "2025-II",
+      "sede": "Lima Centro",
+      "carrera": "Diseño y Desarrollo Web",
+      "totalAlumnos": 332,
+      "tasaAptitud": 85.4,
+      "alumnosRiesgoPct": 8.2,
+      "asistenciaPromedio": 87.5
+    },
+    {
+      "periodo": "2026-I",
+      "sede": "Lima Centro",
+      "carrera": "Diseño y Desarrollo Web",
+      "totalAlumnos": 339,
+      "tasaAptitud": 86.3,
+      "alumnosRiesgoPct": 6.7,
+      "asistenciaPromedio": 88.4
+    },
+    {
+      "periodo": "2023-I",
+      "sede": "Lima Centro",
+      "carrera": "Administración Industrial",
+      "totalAlumnos": 270,
+      "tasaAptitud": 74.4,
+      "alumnosRiesgoPct": 16.9,
+      "asistenciaPromedio": 79.9
+    },
+    {
+      "periodo": "2023-II",
+      "sede": "Lima Centro",
+      "carrera": "Administración Industrial",
+      "totalAlumnos": 267,
+      "tasaAptitud": 75.4,
+      "alumnosRiesgoPct": 15.8,
+      "asistenciaPromedio": 81.3
+    },
+    {
+      "periodo": "2024-I",
+      "sede": "Lima Centro",
+      "carrera": "Administración Industrial",
+      "totalAlumnos": 279,
+      "tasaAptitud": 77.2,
+      "alumnosRiesgoPct": 14.2,
+      "asistenciaPromedio": 82.8
+    },
+    {
+      "periodo": "2024-II",
+      "sede": "Lima Centro",
+      "carrera": "Administración Industrial",
+      "totalAlumnos": 287,
+      "tasaAptitud": 78.4,
+      "alumnosRiesgoPct": 13.0,
+      "asistenciaPromedio": 83.3
+    },
+    {
+      "periodo": "2025-I",
+      "sede": "Lima Centro",
+      "carrera": "Administración Industrial",
+      "totalAlumnos": 301,
+      "tasaAptitud": 79.9,
+      "alumnosRiesgoPct": 11.4,
+      "asistenciaPromedio": 85.3
+    },
+    {
+      "periodo": "2025-II",
+      "sede": "Lima Centro",
+      "carrera": "Administración Industrial",
+      "totalAlumnos": 313,
+      "tasaAptitud": 82.0,
+      "alumnosRiesgoPct": 10.7,
+      "asistenciaPromedio": 85.7
+    },
+    {
+      "periodo": "2026-I",
+      "sede": "Lima Centro",
+      "carrera": "Administración Industrial",
+      "totalAlumnos": 324,
+      "tasaAptitud": 83.6,
+      "alumnosRiesgoPct": 9.3,
+      "asistenciaPromedio": 87.9
+    },
+    {
+      "periodo": "2023-I",
+      "sede": "Surquillo",
+      "carrera": "Ingeniería de Software con IA",
+      "totalAlumnos": 193,
+      "tasaAptitud": 76.4,
+      "alumnosRiesgoPct": 16.2,
+      "asistenciaPromedio": 80.0
+    },
+    {
+      "periodo": "2023-II",
+      "sede": "Surquillo",
+      "carrera": "Ingeniería de Software con IA",
+      "totalAlumnos": 197,
+      "tasaAptitud": 77.8,
+      "alumnosRiesgoPct": 15.5,
+      "asistenciaPromedio": 80.9
+    },
+    {
+      "periodo": "2024-I",
+      "sede": "Surquillo",
+      "carrera": "Ingeniería de Software con IA",
+      "totalAlumnos": 210,
+      "tasaAptitud": 79.2,
+      "alumnosRiesgoPct": 13.4,
+      "asistenciaPromedio": 82.8
+    },
+    {
+      "periodo": "2024-II",
+      "sede": "Surquillo",
+      "carrera": "Ingeniería de Software con IA",
+      "totalAlumnos": 222,
+      "tasaAptitud": 79.7,
+      "alumnosRiesgoPct": 12.4,
+      "asistenciaPromedio": 84.0
+    },
+    {
+      "periodo": "2025-I",
+      "sede": "Surquillo",
+      "carrera": "Ingeniería de Software con IA",
+      "totalAlumnos": 220,
+      "tasaAptitud": 81.4,
+      "alumnosRiesgoPct": 11.1,
+      "asistenciaPromedio": 84.7
+    },
+    {
+      "periodo": "2025-II",
+      "sede": "Surquillo",
+      "carrera": "Ingeniería de Software con IA",
+      "totalAlumnos": 223,
+      "tasaAptitud": 82.3,
+      "alumnosRiesgoPct": 9.0,
+      "asistenciaPromedio": 86.5
+    },
+    {
+      "periodo": "2026-I",
+      "sede": "Surquillo",
+      "carrera": "Ingeniería de Software con IA",
+      "totalAlumnos": 237,
+      "tasaAptitud": 84.3,
+      "alumnosRiesgoPct": 7.6,
+      "asistenciaPromedio": 87.6
+    },
+    {
+      "periodo": "2023-I",
+      "sede": "Surquillo",
+      "carrera": "Redes y Seguridad Informática",
+      "totalAlumnos": 156,
+      "tasaAptitud": 74.0,
+      "alumnosRiesgoPct": 18.0,
+      "asistenciaPromedio": 78.4
+    },
+    {
+      "periodo": "2023-II",
+      "sede": "Surquillo",
+      "carrera": "Redes y Seguridad Informática",
+      "totalAlumnos": 163,
+      "tasaAptitud": 74.3,
+      "alumnosRiesgoPct": 16.3,
+      "asistenciaPromedio": 80.1
+    },
+    {
+      "periodo": "2024-I",
+      "sede": "Surquillo",
+      "carrera": "Redes y Seguridad Informática",
+      "totalAlumnos": 167,
+      "tasaAptitud": 76.6,
+      "alumnosRiesgoPct": 15.1,
+      "asistenciaPromedio": 81.7
+    },
+    {
+      "periodo": "2024-II",
+      "sede": "Surquillo",
+      "carrera": "Redes y Seguridad Informática",
+      "totalAlumnos": 169,
+      "tasaAptitud": 77.2,
+      "alumnosRiesgoPct": 13.8,
+      "asistenciaPromedio": 82.7
+    },
+    {
+      "periodo": "2025-I",
+      "sede": "Surquillo",
+      "carrera": "Redes y Seguridad Informática",
+      "totalAlumnos": 172,
+      "tasaAptitud": 79.0,
+      "alumnosRiesgoPct": 12.4,
+      "asistenciaPromedio": 83.6
+    },
+    {
+      "periodo": "2025-II",
+      "sede": "Surquillo",
+      "carrera": "Redes y Seguridad Informática",
+      "totalAlumnos": 180,
+      "tasaAptitud": 79.8,
+      "alumnosRiesgoPct": 11.1,
+      "asistenciaPromedio": 84.8
+    },
+    {
+      "periodo": "2026-I",
+      "sede": "Surquillo",
+      "carrera": "Redes y Seguridad Informática",
+      "totalAlumnos": 191,
+      "tasaAptitud": 81.1,
+      "alumnosRiesgoPct": 9.6,
+      "asistenciaPromedio": 86.3
+    },
+    {
+      "periodo": "2023-I",
+      "sede": "Surquillo",
+      "carrera": "Diseño y Desarrollo Web",
+      "totalAlumnos": 174,
+      "tasaAptitud": 75.3,
+      "alumnosRiesgoPct": 16.8,
+      "asistenciaPromedio": 79.4
+    },
+    {
+      "periodo": "2023-II",
+      "sede": "Surquillo",
+      "carrera": "Diseño y Desarrollo Web",
+      "totalAlumnos": 175,
+      "tasaAptitud": 76.7,
+      "alumnosRiesgoPct": 15.5,
+      "asistenciaPromedio": 80.3
+    },
+    {
+      "periodo": "2024-I",
+      "sede": "Surquillo",
+      "carrera": "Diseño y Desarrollo Web",
+      "totalAlumnos": 179,
+      "tasaAptitud": 77.0,
+      "alumnosRiesgoPct": 14.3,
+      "asistenciaPromedio": 81.4
+    },
+    {
+      "periodo": "2024-II",
+      "sede": "Surquillo",
+      "carrera": "Diseño y Desarrollo Web",
+      "totalAlumnos": 193,
+      "tasaAptitud": 78.6,
+      "alumnosRiesgoPct": 12.7,
+      "asistenciaPromedio": 83.4
+    },
+    {
+      "periodo": "2025-I",
+      "sede": "Surquillo",
+      "carrera": "Diseño y Desarrollo Web",
+      "totalAlumnos": 196,
+      "tasaAptitud": 79.9,
+      "alumnosRiesgoPct": 12.1,
+      "asistenciaPromedio": 84.6
+    },
+    {
+      "periodo": "2025-II",
+      "sede": "Surquillo",
+      "carrera": "Diseño y Desarrollo Web",
+      "totalAlumnos": 204,
+      "tasaAptitud": 80.9,
+      "alumnosRiesgoPct": 10.5,
+      "asistenciaPromedio": 85.3
+    },
+    {
+      "periodo": "2026-I",
+      "sede": "Surquillo",
+      "carrera": "Diseño y Desarrollo Web",
+      "totalAlumnos": 200,
+      "tasaAptitud": 82.3,
+      "alumnosRiesgoPct": 9.2,
+      "asistenciaPromedio": 86.6
+    },
+    {
+      "periodo": "2023-I",
+      "sede": "Surquillo",
+      "carrera": "Administración Industrial",
+      "totalAlumnos": 159,
+      "tasaAptitud": 71.8,
+      "alumnosRiesgoPct": 19.2,
+      "asistenciaPromedio": 77.7
+    },
+    {
+      "periodo": "2023-II",
+      "sede": "Surquillo",
+      "carrera": "Administración Industrial",
+      "totalAlumnos": 165,
+      "tasaAptitud": 73.1,
+      "alumnosRiesgoPct": 17.8,
+      "asistenciaPromedio": 79.3
+    },
+    {
+      "periodo": "2024-I",
+      "sede": "Surquillo",
+      "carrera": "Administración Industrial",
+      "totalAlumnos": 167,
+      "tasaAptitud": 74.2,
+      "alumnosRiesgoPct": 16.4,
+      "asistenciaPromedio": 80.8
+    },
+    {
+      "periodo": "2024-II",
+      "sede": "Surquillo",
+      "carrera": "Administración Industrial",
+      "totalAlumnos": 172,
+      "tasaAptitud": 75.0,
+      "alumnosRiesgoPct": 15.2,
+      "asistenciaPromedio": 81.4
+    },
+    {
+      "periodo": "2025-I",
+      "sede": "Surquillo",
+      "carrera": "Administración Industrial",
+      "totalAlumnos": 180,
+      "tasaAptitud": 76.6,
+      "alumnosRiesgoPct": 13.5,
+      "asistenciaPromedio": 83.4
+    },
+    {
+      "periodo": "2025-II",
+      "sede": "Surquillo",
+      "carrera": "Administración Industrial",
+      "totalAlumnos": 183,
+      "tasaAptitud": 78.5,
+      "alumnosRiesgoPct": 12.5,
+      "asistenciaPromedio": 84.1
+    },
+    {
+      "periodo": "2026-I",
+      "sede": "Surquillo",
+      "carrera": "Administración Industrial",
+      "totalAlumnos": 190,
+      "tasaAptitud": 79.0,
+      "alumnosRiesgoPct": 11.4,
+      "asistenciaPromedio": 85.6
+    },
+    {
+      "periodo": "2023-I",
+      "sede": "Arequipa",
+      "carrera": "Ingeniería de Software con IA",
+      "totalAlumnos": 172,
+      "tasaAptitud": 72.1,
+      "alumnosRiesgoPct": 20.3,
+      "asistenciaPromedio": 77.1
+    },
+    {
+      "periodo": "2023-II",
+      "sede": "Arequipa",
+      "carrera": "Ingeniería de Software con IA",
+      "totalAlumnos": 187,
+      "tasaAptitud": 73.5,
+      "alumnosRiesgoPct": 18.0,
+      "asistenciaPromedio": 78.3
+    },
+    {
+      "periodo": "2024-I",
+      "sede": "Arequipa",
+      "carrera": "Ingeniería de Software con IA",
+      "totalAlumnos": 191,
+      "tasaAptitud": 75.7,
+      "alumnosRiesgoPct": 16.4,
+      "asistenciaPromedio": 79.7
+    },
+    {
+      "periodo": "2024-II",
+      "sede": "Arequipa",
+      "carrera": "Ingeniería de Software con IA",
+      "totalAlumnos": 193,
+      "tasaAptitud": 76.4,
+      "alumnosRiesgoPct": 14.9,
+      "asistenciaPromedio": 81.5
+    },
+    {
+      "periodo": "2025-I",
+      "sede": "Arequipa",
+      "carrera": "Ingeniería de Software con IA",
+      "totalAlumnos": 196,
+      "tasaAptitud": 78.9,
+      "alumnosRiesgoPct": 13.9,
+      "asistenciaPromedio": 83.1
+    },
+    {
+      "periodo": "2025-II",
+      "sede": "Arequipa",
+      "carrera": "Ingeniería de Software con IA",
+      "totalAlumnos": 205,
+      "tasaAptitud": 80.4,
+      "alumnosRiesgoPct": 12.6,
+      "asistenciaPromedio": 84.4
+    },
+    {
+      "periodo": "2026-I",
+      "sede": "Arequipa",
+      "carrera": "Ingeniería de Software con IA",
+      "totalAlumnos": 211,
+      "tasaAptitud": 80.9,
+      "alumnosRiesgoPct": 10.7,
+      "asistenciaPromedio": 85.3
+    },
+    {
+      "periodo": "2023-I",
+      "sede": "Arequipa",
+      "carrera": "Redes y Seguridad Informática",
+      "totalAlumnos": 136,
+      "tasaAptitud": 69.9,
+      "alumnosRiesgoPct": 21.9,
+      "asistenciaPromedio": 76.1
+    },
+    {
+      "periodo": "2023-II",
+      "sede": "Arequipa",
+      "carrera": "Redes y Seguridad Informática",
+      "totalAlumnos": 136,
+      "tasaAptitud": 70.7,
+      "alumnosRiesgoPct": 20.1,
+      "asistenciaPromedio": 77.1
+    },
+    {
+      "periodo": "2024-I",
+      "sede": "Arequipa",
+      "carrera": "Redes y Seguridad Informática",
+      "totalAlumnos": 148,
+      "tasaAptitud": 73.1,
+      "alumnosRiesgoPct": 18.1,
+      "asistenciaPromedio": 78.9
+    },
+    {
+      "periodo": "2024-II",
+      "sede": "Arequipa",
+      "carrera": "Redes y Seguridad Informática",
+      "totalAlumnos": 148,
+      "tasaAptitud": 74.1,
+      "alumnosRiesgoPct": 17.1,
+      "asistenciaPromedio": 80.4
+    },
+    {
+      "periodo": "2025-I",
+      "sede": "Arequipa",
+      "carrera": "Redes y Seguridad Informática",
+      "totalAlumnos": 151,
+      "tasaAptitud": 75.3,
+      "alumnosRiesgoPct": 14.9,
+      "asistenciaPromedio": 81.3
+    },
+    {
+      "periodo": "2025-II",
+      "sede": "Arequipa",
+      "carrera": "Redes y Seguridad Informática",
+      "totalAlumnos": 161,
+      "tasaAptitud": 78.0,
+      "alumnosRiesgoPct": 13.4,
+      "asistenciaPromedio": 83.0
+    },
+    {
+      "periodo": "2026-I",
+      "sede": "Arequipa",
+      "carrera": "Redes y Seguridad Informática",
+      "totalAlumnos": 159,
+      "tasaAptitud": 79.2,
+      "alumnosRiesgoPct": 12.3,
+      "asistenciaPromedio": 84.1
+    },
+    {
+      "periodo": "2023-I",
+      "sede": "Arequipa",
+      "carrera": "Diseño y Desarrollo Web",
+      "totalAlumnos": 151,
+      "tasaAptitud": 70.3,
+      "alumnosRiesgoPct": 21.3,
+      "asistenciaPromedio": 76.0
+    },
+    {
+      "periodo": "2023-II",
+      "sede": "Arequipa",
+      "carrera": "Diseño y Desarrollo Web",
+      "totalAlumnos": 164,
+      "tasaAptitud": 71.8,
+      "alumnosRiesgoPct": 19.3,
+      "asistenciaPromedio": 77.6
+    },
+    {
+      "periodo": "2024-I",
+      "sede": "Arequipa",
+      "carrera": "Diseño y Desarrollo Web",
+      "totalAlumnos": 163,
+      "tasaAptitud": 73.7,
+      "alumnosRiesgoPct": 17.7,
+      "asistenciaPromedio": 79.1
+    },
+    {
+      "periodo": "2024-II",
+      "sede": "Arequipa",
+      "carrera": "Diseño y Desarrollo Web",
+      "totalAlumnos": 168,
+      "tasaAptitud": 76.0,
+      "alumnosRiesgoPct": 15.7,
+      "asistenciaPromedio": 80.1
+    },
+    {
+      "periodo": "2025-I",
+      "sede": "Arequipa",
+      "carrera": "Diseño y Desarrollo Web",
+      "totalAlumnos": 178,
+      "tasaAptitud": 76.5,
+      "alumnosRiesgoPct": 14.9,
+      "asistenciaPromedio": 82.0
+    },
+    {
+      "periodo": "2025-II",
+      "sede": "Arequipa",
+      "carrera": "Diseño y Desarrollo Web",
+      "totalAlumnos": 178,
+      "tasaAptitud": 79.2,
+      "alumnosRiesgoPct": 13.1,
+      "asistenciaPromedio": 83.1
+    },
+    {
+      "periodo": "2026-I",
+      "sede": "Arequipa",
+      "carrera": "Diseño y Desarrollo Web",
+      "totalAlumnos": 183,
+      "tasaAptitud": 79.8,
+      "alumnosRiesgoPct": 11.5,
+      "asistenciaPromedio": 84.6
+    },
+    {
+      "periodo": "2023-I",
+      "sede": "Arequipa",
+      "carrera": "Administración Industrial",
+      "totalAlumnos": 148,
+      "tasaAptitud": 67.7,
+      "alumnosRiesgoPct": 22.6,
+      "asistenciaPromedio": 75.3
+    },
+    {
+      "periodo": "2023-II",
+      "sede": "Arequipa",
+      "carrera": "Administración Industrial",
+      "totalAlumnos": 149,
+      "tasaAptitud": 68.9,
+      "alumnosRiesgoPct": 21.3,
+      "asistenciaPromedio": 76.2
+    },
+    {
+      "periodo": "2024-I",
+      "sede": "Arequipa",
+      "carrera": "Administración Industrial",
+      "totalAlumnos": 156,
+      "tasaAptitud": 70.7,
+      "alumnosRiesgoPct": 19.5,
+      "asistenciaPromedio": 77.9
+    },
+    {
+      "periodo": "2024-II",
+      "sede": "Arequipa",
+      "carrera": "Administración Industrial",
+      "totalAlumnos": 158,
+      "tasaAptitud": 72.5,
+      "alumnosRiesgoPct": 18.7,
+      "asistenciaPromedio": 79.3
+    },
+    {
+      "periodo": "2025-I",
+      "sede": "Arequipa",
+      "carrera": "Administración Industrial",
+      "totalAlumnos": 162,
+      "tasaAptitud": 73.7,
+      "alumnosRiesgoPct": 17.0,
+      "asistenciaPromedio": 80.4
+    },
+    {
+      "periodo": "2025-II",
+      "sede": "Arequipa",
+      "carrera": "Administración Industrial",
+      "totalAlumnos": 171,
+      "tasaAptitud": 75.3,
+      "alumnosRiesgoPct": 15.2,
+      "asistenciaPromedio": 82.1
+    },
+    {
+      "periodo": "2026-I",
+      "sede": "Arequipa",
+      "carrera": "Administración Industrial",
+      "totalAlumnos": 181,
+      "tasaAptitud": 76.9,
+      "alumnosRiesgoPct": 13.7,
+      "asistenciaPromedio": 83.4
+    }
+  ]
+}

@@ -10,3 +10,8 @@ export { ChangesFromCSV } from './ChangesFromCSV';
 export { DemographicAnalysis } from './DemographicAnalysis';
 export { AcademicResultsTable } from './AcademicResultsTable';
 export { DatasetVsDatasetPanel } from './DatasetVsDatasetPanel';
+export { HistoricoInstitucional } from './HistoricoInstitucional';
+export { HistoricoFiltros } from './HistoricoFiltros';
+export { HistoricoKpiCards } from './HistoricoKpiCards';
+export { HistoricoComparativeChart } from './HistoricoComparativeChart';
+export { HistoricoInformeImpresion } from './HistoricoInformeImpresion';

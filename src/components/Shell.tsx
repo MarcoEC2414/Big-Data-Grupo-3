@@ -234,7 +234,7 @@ export function Shell({
       <div className="relative z-[1] flex">
         {/* Sidebar */}
         <aside
-          className={`fixed inset-y-0 left-0 z-40 flex w-64 flex-col justify-between border-r border-border bg-card p-5 transition-transform lg:translate-x-0 ${
+          className={`fixed inset-y-0 left-0 z-40 flex w-64 flex-col justify-between border-r border-border bg-card p-5 transition-transform lg:translate-x-0 print:hidden ${
             open ? "translate-x-0" : "-translate-x-full"
           }`}
         >
@@ -308,8 +308,8 @@ export function Shell({
         </aside>
 
         {/* Contenido principal */}
-        <main className="min-h-screen w-full lg:pl-64">
-          <header className="flex flex-wrap items-start justify-between gap-3 border-b border-white/6 bg-card px-6 py-5">
+        <main className="min-h-screen w-full lg:pl-64 print:pl-0">
+          <header className="flex flex-wrap items-start justify-between gap-3 border-b border-white/6 bg-card px-6 py-5 print:hidden">
             <div className="flex items-start gap-3">
               <button
                 className="mt-1 lg:hidden"
@@ -330,7 +330,7 @@ export function Shell({
               <ThemeToggle />
             </div>
           </header>
-          <div className="relative p-6">
+          <div className="relative p-6 print:p-0">
             <FadeIn key={title}>{children}</FadeIn>
           </div>
         </main>

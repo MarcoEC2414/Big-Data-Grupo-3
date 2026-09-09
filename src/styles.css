@@ -244,3 +244,47 @@
 .dark ::-webkit-scrollbar-thumb:hover {
   background: rgba(168, 85, 247, 0.35);
 }
+
+/* ==========================================================================
+   Modo Impresión Formal — Informe Institucional (módulo Comparativa)
+   Al imprimir o guardar como PDF: fondo blanco, texto oscuro legible,
+   sin sidebar/controles y en orientación horizontal para la tabla ejecutiva.
+   El contenido imprimible vive en .print-report (oculto en pantalla,
+   visible solo en @media print vía las utilidades print:hidden / print:block
+   de Tailwind). Estas reglas cubren lo que las utilidades no alcanzan
+   (fondo global, decorativos, saltos de página).
+   ========================================================================== */
+@page {
+  size: landscape;
+  margin: 14mm;
+}
+
+@media print {
+  html,
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+  }
+
+  .app-aura {
+    display: none !important;
+  }
+
+  .print-report {
+    color: #0f172a !important;
+  }
+
+  .print-report table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  .print-report th,
+  .print-report td {
+    border: 1px solid #cbd5e1;
+  }
+
+  .print-avoid-break {
+    break-inside: avoid;
+  }
+}
